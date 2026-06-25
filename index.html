@@ -1,98 +1,126 @@
-  <!DOCTYPE html>
+<!DOCTYPE html
+  ="it">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0 html>
   <html lang="it">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>EnioHouse - Casa Vacanze a Salionze, Veneto</title>
-      <meta name="description" content="EnioHouse: casa vacanze a Salionze, Veneto. 6 ospiti, 2 camere, cortile privato. Prenota il tuo soggiorno perfetto
-  nel cuore del Veneto.">
+      <meta name="description" content="EnioHouse: elegante casa vacanze a Salionze (Veneto) per 6 ospiti. Cortile privato, WiFi, cucina attrezzato, cucina
+  completa, a pochi minuti da Venezia e Padova. Prenota il tuo soggiorno da sogno.">
 
-      <!-- Google Fonts - Poppins -->
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+      <!-- Font: Poppins (elegante e moderno) -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-      <!-- Icone (Font Awesome) -->
+      <!-- Icone: Font Awesome -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
       <style>
+          /* =============================================
+             VARIABILI DI DESIGN (Palette naturale raffinata)
+             ============================================= */
           :root {
-              /* Palette colori naturali */
-              --crema-caldo: #f8f4f0;
-              --terracotta: #c97a5d;
-              --ocra: #d4a017;
-              --salvia: #8a9a5b;
-              --testo-scuro: #2d2d2d;
-              --testo-chiaro: #ffffff;
-              --ombra-leggera: rgba(0, 0, 0, 0.05);
+              /* Colori principali - ispirati alla terra veneta */
+              --crema: #fdf6f0;      /* Sfondo caldo e avvolgente */
+              --terracotta: #c97a5d;  /* Accenti caldi e terrosi */
+              --ocra: #d4a017;        /* Giallo tenue per highlights */
+              --salvia: #8a9a5b;      /* Verde naturale per equilibrio */
+              --grigio-scuro: #2d2d2d;
+              --grigio-chiaro: #666;
+              --bianco: #ffffff;
+              --ombra: 0 10px 30px rgba(0, 0, 0, 0.08);
               --trasparenza: rgba(255, 255, 255, 0.85);
 
               /* Tipografia */
               --font-principale: 'Poppins', sans-serif;
+              --font-title: 700;
+              --font-subtitle: 500;
+              --font-body: 400;
 
-              /* Spaziature */
-              --spacing-xs: 0.5rem;
-              --spacing-sm: 1rem;
-              --spacing-md: 1.5rem;
-              --spacing-lg: 2rem;
-              --spacing-xl: 3rem;
+              /* Spaziature e bordi */
+              --radius: 16px;
+              --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           }
 
+          /* =============================================
+             RESET E BASE
+             ============================================= */
           * {
               margin: 0;
               padding: 0;
               box-sizing: border-box;
           }
 
+          html { scroll-behavior: smooth; }
+
           body {
               font-family: var(--font-principale);
-              background-color: var(--crema-caldo);
-              color: var(--testo-scuro);
-              line-height: 1.6;
+              background-color: var(--crema);
+              color: var(--grigio-scuro);
+              line-height: 1.7;
               overflow-x: hidden;
           }
 
-          /* Animazioni fluide */
+          img { max-width: 100%; height: auto; display: block; }
+          a { text-decoration: none; color: inherit; }
+          ul { list-style: none; }
+
+          /* =============================================
+             ANIMAZIONI SFUSE E NATURALI
+             ============================================= */
           @keyframes fadeInUp {
-              from {
-                  opacity: 0;
-                  transform: translateY(30px);
-              }
-              to {
-                  opacity: 1;
-                  transform: translateY(0);
-              }
+              from { opacity: 0; transform: translateY(20px); }
+              to   { opacity: 1; transform: translateY(0); }
           }
 
-          @keyframes pulse {
-              0% { transform: scale(1); }
-              50% { transform: scale(1.05); }
-              100% { transform: scale(1); }
+          @keyframes float {
+              0%, 100% { transform: translateY(0) rotate(0deg); }
+              50%    { transform: translateY(-10px) rotate(2deg); }
           }
 
           .animate-fade-in {
+              opacity: 0;
+              transform: translateY(20px);
               animation: fadeInUp 0.8s ease-out forwards;
           }
 
-          .animate-pulse {
-              animation: pulse 2s infinite;
+          .animate-delay-1 { animation-delay: 0.2s; }
+          .animate-delay-2 { animation-delay: 0.4s; }
+          .animate-delay-3 { animation-delay: 0.6s; }
+
+          /* =============================================
+             LAYOUT PRINCIPALE
+             ============================================= */
+          .container {
+              width: 90%;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 1rem;
           }
 
-          /* Header e Navigazione */
+          section {
+              padding: 6rem 0;
+              position: relative;
+          }
+
+          /* =============================================
+             HEADER MINIMALISTA
+             ============================================= */
           header {
               position: fixed;
               top: 0;
               left: 0;
               width: 100%;
               background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              padding: var(--spacing-sm) 0;
+              backdrop-filter: blur(12px);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.03);
               z-index: 1000;
-              border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+              padding: 1.5rem 0;
           }
 
           .nav-container {
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 var(--spacing-lg);
               display: flex;
               justify-content: space-between;
               align-items: center;
@@ -101,63 +129,57 @@
           .logo {
               display: flex;
               align-items: center;
-              gap: var(--spacing-xs);
-              font-weight: 700;
+              gap: 0.75rem;
+              font-weight: var(--font-title);
               font-size: 1.5rem;
               color: var(--terracotta);
-              text-decoration: none;
           }
 
-          .logo i {
-              font-size: 1.8rem;
-          }
+          .logo i { font-size: 1.8rem; }
 
           nav ul {
               display: flex;
-              list-style: none;
-              gap: var(--spacing-lg);
+              gap: 2rem;
           }
 
           nav a {
-              text-decoration: none;
-              color: var(--testo-scuro);
-              font-weight: 600;
+              font-weight: var(--font-subtitle);
+              font-size: 0.95rem;
+              color: var(--grigio-scuro);
               position: relative;
-              padding: var(--spacing-xs) 0;
-              transition: color 0.3s ease;
+              padding: 0.25rem 0;
+              transition: var(--transition);
           }
 
           nav a::after {
               content: '';
               position: absolute;
               bottom: 0;
-              left: 0;
+              left: 50%;
+              transform: translateX(-50%);
               width: 0;
               height: 2px;
               background-color: var(--terracotta);
               transition: width 0.3s ease;
           }
 
-          nav a:hover::after {
-              width: 100%;
-          }
+          nav a:hover::after { width: 50%; }
+          nav a:hover { color: var(--terracotta); }
 
-          nav a:hover {
-              color: var(--terracotta);
-          }
-
-          /* Hero Section */
+          /* =============================================
+             HERO SEZIONE - IMPATTO VISIVO FORTE
+             ============================================= */
           .hero {
               min-height: 100vh;
-              background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-                        url('https://images.unsplash.com/photo-1582719478250-596923406047?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%
-  3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+              background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+                          url('https://images.unsplash.com/photo-1582719478250-596923406047?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8f
+  A%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               text-align: center;
-              padding: 0 var(--spacing-lg);
+              padding: 0 1rem;
               position: relative;
               overflow: hidden;
           }
@@ -170,13 +192,8 @@
               width: 200%;
               height: 200%;
               background: radial-gradient(circle, var(--trasparenza) 0%, transparent 70%);
-              animation: float 15s ease-in-out infinite;
+              animation: float 18s ease-in-out infinite;
               z-index: 0;
-          }
-
-          @keyframes float {
-              0%, 100% { transform: translateY(0) rotate(0deg); }
-              50% { transform: translateY(-20px) rotate(5deg); }
           }
 
           .hero-content {
@@ -186,99 +203,168 @@
           }
 
           .hero h1 {
-              font-size: 2.5rem;
-              margin-bottom: var(--spacing-sm);
-              color: var(--testo-chiaro);
+              font-size: 2.8rem;
+              font-weight: var(--font-title);
+              color: var(--bianco);
+              margin-bottom: 1rem;
               text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              letter-spacing: -0.5px;
           }
 
           .hero h2 {
               font-size: 1.2rem;
+              font-weight: var(--font-subtitle);
               text-transform: uppercase;
-              letter-spacing: 1px;
-              color: var(--testo-chiaro);
+              letter-spacing: 1.2px;
+              color: var(--bianco);
               opacity: 0.9;
-              margin-bottom: var(--spacing-lg);
-              font-weight: 600;
+              margin-bottom: 2.5rem;
           }
 
           .hero-buttons {
               display: flex;
-              gap: var(--spacing-md);
+              gap: 1.5rem;
               flex-wrap: wrap;
               justify-content: center;
           }
 
           .btn {
               display: inline-block;
-              padding: var(--spacing-sm) var(--spacing-lg);
+              padding: 1rem 2rem;
               border-radius: 50px;
-              font-weight: 600;
-              text-decoration: none;
-              transition: all 0.3s ease;
+              font-weight: var(--font-subtitle);
+              font-size: 1rem;
               border: none;
               cursor: pointer;
-              font-size: 1rem;
+              transition: var(--transition);
+              text-align: center;
           }
 
           .btn-primary {
               background-color: var(--terracotta);
-              color: var(--testo-chiaro);
-              box-shadow: 0 4px 15px rgba(201, 122, 93, 0.3);
+              color: var(--bianco);
+              box-shadow: 0 4px 15px rgba(201, 122, 93, 0.25);
           }
 
           .btn-secondary {
               background-color: var(--trasparenza);
-              color: var(--testo-chiaro);
-              backdrop-filter: blur(5px);
-              border: 1px solid rgba(255, 255, 255, 0.3);
+              color: var(--bianco);
+              backdrop-filter: blur(6px);
+              border: 1px solid rgba(255, 255, 255, 0.25);
           }
 
           .btn:hover {
               transform: translateY(-3px);
-              box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+              box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
           }
 
-          .btn-primary:hover {
-              background-color: #b56a4e;
-          }
+          .btn-primary:hover { background-color: #b56a4e; }
 
           .availability-badge {
               display: flex;
               align-items: center;
-              gap: var(--spacing-xs);
-              background-color: rgba(255, 255, 255, 0.2);
-              padding: var(--spacing-xs) var(--spacing-sm);
-              border-radius: 30px;
-              margin-top: var(--spacing-md);
+              gap: 0.5rem;
+              background-color: rgba(255, 255, 255, 0.15);
+              padding: 0.5rem 1rem;
+              border-radius: 50px;
               font-size: 0.9rem;
           }
 
-          .availability-badge i {
-              color: var(--salvia);
+          .availability-badge i { color: var(--salvia); }
+
+          /* =============================================
+             SEZIONE GALLERIA FOTO (USANDO LE TUE FOTO AIRBNB)
+             ============================================= */
+          .gallery-section {
+              background-color: var(--crema);
           }
 
-          /* Sezioni comuni */
-          section {
-              padding: var(--spacing-xl) 0;
-              position: relative;
-          }
-
-          .section-title {
+          .gallery-section h2 {
               text-align: center;
-              margin-bottom: var(--spacing-xl);
-              position: relative;
-          }
-
-          .section-title h2 {
-              font-size: 2rem;
+              font-size: 2.2rem;
+              font-weight: var(--font-title);
               color: var(--terracotta);
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: 3rem;
               position: relative;
-              display: inline-block;
           }
 
-          .section-title h2::after {
+          .gallery-section h2::after {
+              content: '';
+              position: absolute;
+              bottom: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 80px;
+              height: 3px;
+              background-color: var(--ocra);
+              border-radius: 2px;
+          }
+
+          .gallery-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 1.5rem;
+          }
+
+          .gallery-item {
+              border-radius: var(--radius);
+              overflow: hidden;
+              box-shadow: var(--ombra);
+              transition: var(--transition);
+              position: relative;
+          }
+
+          .gallery-item:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+          }
+
+          .gallery-item img {
+              height: 220px;
+              object-fit: cover;
+              transition: transform 0.5s ease;
+          }
+
+          .gallery-item:hover img {
+              transform: scale(1.05);
+          }
+
+          .gallery-overlay {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+              color: var(--bianco);
+              padding: 1.25rem;
+              font-size: 0.9rem;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+          }
+
+          .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+          /* =============================================
+             SEZIONE CALENDARIO - INTEGRAZIONE REALE AIRBNB/BOOKING
+             ============================================= */
+          .calendar-section {
+              background-color: var(--bianco);
+              border-radius: var(--radius);
+              box-shadow: var(--ombra);
+              padding: 2.5rem;
+              margin: 2rem 0;
+          }
+
+          .calendar-section h2 {
+              text-align: center;
+              font-size: 2rem;
+              font-weight: var(--font-title);
+              color: var(--terracotta);
+              margin-bottom: 2rem;
+              position: relative;
+          }
+
+          .calendar-section h2::after {
               content: '';
               position: absolute;
               bottom: -8px;
@@ -290,192 +376,140 @@
               border-radius: 2px;
           }
 
-          .section-title p {
+          .calendar-intro {
+              text-align: center;
               max-width: 600px;
-              margin: 0 auto;
-              color: #666;
+              margin: 0 auto 2.5rem;
+              color: var(--grigio-chiaro);
               font-size: 1.1rem;
           }
 
-          /* Container */
-          .container {
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 var(--spacing-lg);
-          }
-
-          /* Sezione Descrizione Alloggio */
-          .accommodation-grid {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-              gap: var(--spacing-lg);
-              margin-top: var(--spacing-lg);
-          }
-
-          .accommodation-card {
-              background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              padding: var(--spacing-lg);
-              box-shadow: 0 10px 30px var(--ombra-leggera);
-              transition: transform 0.3s ease;
-          }
-
-          .accommodation-card:hover {
-              transform: translateY(-5px);
-          }
-
-          .accommodation-card h3 {
-              color: var(--terracotta);
-              margin-bottom: var(--spacing-sm);
+          .calendar-options {
               display: flex;
-              align-items: center;
-              gap: var(--spacing-xs);
-          }
-
-          .accommodation-card i {
-              font-size: 1.2rem;
-          }
-
-          .feature-list {
-              display: grid;
-              grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-              gap: var(--spacing-sm);
-              margin-top: var(--spacing-sm);
-          }
-
-          .feature-item {
-              display: flex;
-              align-items: center;
-              gap: var(--spacing-xs);
-              font-size: 0.9rem;
-              color: #555;
-          }
-
-          .feature-item i {
-              color: var(--salvia);
-              width: 20px;
-          }
-
-          /* Sezione Calendario (Versione Visuale) */
-          .calendar-section {
-              background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              padding: var(--spacing-lg);
-              box-shadow: 0 10px 30px var(--ombra-leggera);
-          }
-
-          .calendar-info {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              flex-wrap: wrap;
-              gap: var(--spacing-md);
-              margin-bottom: var(--spacing-lg);
-          }
-
-          .calendar-info div {
-              display: flex;
-              align-items: center;
-              gap: var(--spacing-xs);
-              font-size: 0.95rem;
-          }
-
-          .calendar-info i {
-              color: var(--salvia);
-          }
-
-          .calendar-grid {
-              display: grid;
-              grid-template-columns: repeat(7, 1fr);
-              gap: var(--spacing-xs);
-          }
-
-          .calendar-header {
-              background-color: rgba(201, 122, 93, 0.1);
-              color: var(--terracotta);
-              font-weight: 600;
-              text-align: center;
-              padding: var(--spacing-sm);
-              border-radius: 10px;
-              text-transform: uppercase;
-              font-size: 0.85rem;
-              letter-spacing: 0.5px;
-          }
-
-          .calendar-day {
-              aspect-ratio: 1;
-              background-color: var(--crema-caldo);
-              border-radius: 12px;
-              display: flex;
-              align-items: center;
               justify-content: center;
-              font-weight: 600;
+              gap: 2rem;
+              flex-wrap: wrap;
+              margin-bottom: 2.5rem;
+          }
+
+          .calendar-option {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 1.5rem;
+              border-radius: var(--radius);
+              border: 1px solid #eee;
+              background-color: #fafafa;
+              transition: var(--transition);
               cursor: pointer;
-              transition: all 0.2s ease;
-              border: 2px solid transparent;
-              position: relative;
+          }
+
+          .calendar-option:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+              border-color: var(--terracotta);
+          }
+
+          .calendar-option i {
+              font-size: 2rem;
+              color: var(--terracotta);
+          }
+
+          .calendar-option h3 {
+              font-weight: var(--font-subtitle);
+              color: var(--grigio-scuro);
+          }
+
+          .calendar-option p {
+              font-size: 0.9rem;
+              color: var(--grigio-chiaro);
+              text-align: center;
+              max-width: 180px;
+          }
+
+          /* Embed container per calendario reale */
+          .calendar-embed {
+              border-radius: var(--radius);
               overflow: hidden;
+              box-shadow: var(--ombra);
+              aspect-ratio: 16/9;
+              background-color: #f0f0f0;
           }
 
-          .calendar-day:hover {
-              transform: scale(1.05);
-              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          .calendar-embed iframe {
+              width: 100%;
+              height: 100%;
+              border: none;
           }
 
-          .calendar-day.available {
-              background-color: rgba(138, 154, 91, 0.15);
-              color: var(--salvia);
-              border-color: rgba(138, 154, 91, 0.3);
+          /* =============================================
+             FORM PRENOTAZIONE SEMPLIFICATO
+             ============================================= */
+          .booking-section {
+              background-color: var(--crema);
           }
 
-          .calendar-day.booked {
-              background-color: rgba(201, 122, 93, 0.1);
-              color: #ccc;
-              cursor: not-allowed;
+          .booking-section h2 {
+              text-align: center;
+              font-size: 2rem;
+              font-weight: var(--font-title);
+              color: var(--terracotta);
+              margin-bottom: 2.5rem;
+              position: relative;
           }
 
-          .calendar-day::after {
-              content: attr(data-price);
+          .booking-section h2::after {
+              content: '';
               position: absolute;
-              bottom: 5px;
-              font-size: 0.7rem;
-              opacity: 0.7;
+              bottom: -8px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 50px;
+              height: 3px;
+              background-color: var(--ocra);
+              border-radius: 2px;
           }
 
-          /* Form Prenotazione */
           .booking-form {
-              background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              padding: var(--spacing-lg);
-              box-shadow: 0 10px 30px var(--ombra-leggera);
-              max-width: 600px;
+              max-width: 500px;
               margin: 0 auto;
+              background-color: var(--bianco);
+              padding: 2.5rem;
+              border-radius: var(--radius);
+              box-shadow: var(--ombra);
+          }
+
+          .booking-form h3 {
+              text-align: center;
+              font-size: 1.5rem;
+              font-weight: var(--font-subtitle);
+              color: var(--terracotta);
+              margin-bottom: 2rem;
           }
 
           .form-group {
-              margin-bottom: var(--spacing-md);
+              margin-bottom: 1.75rem;
           }
 
           .form-group label {
               display: block;
-              margin-bottom: var(--spacing-xs);
-              font-weight: 600;
-              color: var(--testo-scuro);
+              margin-bottom: 0.5rem;
+              font-weight: var(--font-subtitle);
+              color: var(--grigio-scuro);
+              font-size: 0.95rem;
           }
 
           .form-group input,
           .form-group select,
           .form-group textarea {
               width: 100%;
-              padding: var(--spacing-sm);
-              border: 1px solid #ddd;
-              border-radius: 10px;
+              padding: 1rem;
+              border: 1px solid #e0e0e0;
+              border-radius: 12px;
               font-family: var(--font-principale);
               font-size: 1rem;
-              transition: border-color 0.3s ease;
+              transition: border-color 0.3s ease, box-shadow 0.3s ease;
           }
 
           .form-group input:focus,
@@ -483,149 +517,125 @@
           .form-group textarea:focus {
               outline: none;
               border-color: var(--terracotta);
-              box-shadow: 0 0 0 3px rgba(201, 122, 93, 0.2);
+              box-shadow: 0 0 0 3px rgba(201, 122, 93, 0.15);
           }
 
           .form-group textarea {
               resize: vertical;
-              min-height: 100px;
+              min-height: 120px;
           }
 
           .btn-submit {
               width: 100%;
-              padding: var(--spacing-sm);
+              padding: 1.25rem;
               font-size: 1.1rem;
-              margin-top: var(--spacing-md);
+              font-weight: var(--font-subtitle);
+              margin-top: 1rem;
           }
 
-          /* Sezione Regole */
-          .rules-grid {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: var(--spacing-lg);
-              margin-top: var(--spacing-lg);
+          /* =============================================
+             ALTRE SEZIONI (REGOLE, DOVE SIAMO, FOOTER)
+             ============================================= */
+          .info-section {
+              background-color: var(--bianco);
+              border-radius: var(--radius);
+              box-shadow: var(--ombra);
+              padding: 2.5rem;
+              margin: 2rem 0;
           }
 
-          .rule-card {
-              background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              border-radius: 15px;
-              padding: var(--spacing-md);
-              box-shadow: 0 5px 15px var(--ombra-leggera);
-              border-left: 4px solid var(--terracotta);
-          }
-
-          .rule-card h3 {
+          .info-section h2 {
+              font-size: 1.8rem;
+              font-weight: var(--font-title);
               color: var(--terracotta);
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: 1.5rem;
               display: flex;
               align-items: center;
-              gap: var(--spacing-xs);
+              gap: 0.75rem;
           }
 
-          /* Sezione Dove Siamo */
-          .location-section {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-              gap: var(--spacing-lg);
-              margin-top: var(--spacing-lg);
+          .info-section h2 i { color: var(--salvia); }
+
+          .info-section p, .info-section li {
+              color: var(--grigio-chiaro);
+              line-height: 1.8;
+              margin-bottom: 1rem;
           }
 
+          .info-section ul {
+              padding-left: 1.5rem;
+          }
+
+          .info-section li {
+              margin-bottom: 0.75rem;
+              display: flex;
+              align-items: flex-start;
+              gap: 0.75rem;
+          }
+
+          .info-section li i {
+              flex-shrink: 0;
+              color: var(--terracotta);
+              margin-top: 0.25rem;
+          }
+
+          /* Map container */
           .map-container {
-              border-radius: 20px;
+              border-radius: var(--radius);
               overflow: hidden;
-              box-shadow: 0 10px 30px var(--ombra-leggera);
+              box-shadow: var(--ombra);
               aspect-ratio: 16/9;
+              margin: 1.5rem 0;
           }
 
-          .location-info {
-              background-color: var(--trasparenza);
-              backdrop-filter: blur(10px);
-              border-radius: 20px;
-              padding: var(--spacing-lg);
-              box-shadow: 0 10px 30px var(--ombra-leggera);
-          }
-
-          .location-info p {
-              margin-bottom: var(--spacing-sm);
-              display: flex;
-              align-items: center;
-              gap: var(--spacing-xs);
-          }
-
-          .location-info i {
-              color: var(--salvia);
-              width: 20px;
-          }
-
-          /* Chat Widget (Placeholder) */
-          .chat-widget {
-              position: fixed;
-              bottom: 2rem;
-              right: 2rem;
-              width: 60px;
-              height: 60px;
-              background-color: var(--terracotta);
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: var(--testo-chiaro);
-              font-size: 1.5rem;
-              box-shadow: 0 5px 20px rgba(201, 122, 93, 0.4);
-              z-index: 1000;
-              cursor: pointer;
-              transition: all 0.3s ease;
-              animation: pulse 2s infinite;
-          }
-
-          .chat-widget:hover {
-              transform: scale(1.1);
-              box-shadow: 0 8px 25px rgba(201, 122, 93, 0.5);
-          }
-
-          /* Footer */
+          /* =============================================
+             FOOTER
+             ============================================= */
           footer {
-              background-color: var(--testo-scuro);
-              color: var(--testo-chiaro);
-              padding: var(--spacing-xl) 0 var(--spacing-sm);
-              margin-top: var(--spacing-xl);
+              background-color: var(--grigio-scuro);
+              color: #ccc;
+              padding: 4rem 0 2rem;
+              margin-top: 4rem;
           }
 
           .footer-content {
               display: grid;
               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-              gap: var(--spacing-lg);
+              gap: 2.5rem;
               max-width: 1200px;
               margin: 0 auto;
-              padding: 0 var(--spacing-lg);
+              padding: 0 1rem;
           }
 
           .footer-logo {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              gap: var(--spacing-sm);
+              text-align: center;
+              margin-bottom: 2rem;
           }
 
           .footer-logo h3 {
               font-size: 1.5rem;
+              font-weight: var(--font-title);
               color: var(--terracotta);
+              margin-bottom: 0.5rem;
+          }
+
+          .footer-logo p {
+              font-size: 0.9rem;
+              color: #aaa;
           }
 
           .footer-links h4,
-          .footer-contact h4,
-          .footer-social h4 {
+          .footer-contact h4 {
               font-size: 1.1rem;
-              margin-bottom: var(--spacing-sm);
+              font-weight: var(--font-subtitle);
               color: var(--ocra);
+              margin-bottom: 1.25rem;
               position: relative;
               display: inline-block;
           }
 
           .footer-links h4::after,
-          .footer-contact h4::after,
-          .footer-social h4::after {
+          .footer-contact h4::after {
               content: '';
               position: absolute;
               bottom: -4px;
@@ -642,129 +652,90 @@
 
           .footer-links li,
           .footer-contact li {
-              margin-bottom: var(--spacing-xs);
+              margin-bottom: 0.75rem;
           }
 
           .footer-links a,
           .footer-contact a {
               color: #ccc;
               text-decoration: none;
-              transition: color 0.3s ease;
               display: flex;
               align-items: center;
-              gap: var(--spacing-xs);
+              gap: 0.5rem;
+              transition: color 0.3s ease;
           }
 
           .footer-links a:hover,
           .footer-contact a:hover {
-              color: var(--testo-chiaro);
+              color: var(--bianco);
+          }
+
+          .footer-links i,
+          .footer-contact i {
+              color: var(--terracotta);
+              width: 18px;
           }
 
           .footer-social {
               display: flex;
-              gap: var(--spacing-sm);
+              gap: 1rem;
+              justify-content: center;
+              margin-top: 1.5rem;
           }
 
           .footer-social a {
-              width: 40px;
-              height: 40px;
+              width: 45px;
+              height: 45px;
               border-radius: 50%;
-              background-color: rgba(255, 255, 255, 0.1);
+              background-color: rgba(255, 255, 255, 0.08);
               display: flex;
               align-items: center;
               justify-content: center;
               color: #ccc;
-              transition: all 0.3s ease;
+              transition: var(--transition);
           }
 
           .footer-social a:hover {
               background-color: var(--terracotta);
-              color: var(--testo-chiaro);
+              color: var(--bianco);
               transform: translateY(-3px);
           }
 
           .footer-bottom {
               text-align: center;
-              margin-top: var(--spacing-lg);
-              padding-top: var(--spacing-md);
-              border-top: 1px solid rgba(255, 255, 255, 0.1);
+              margin-top: 3rem;
+              padding-top: 1.5rem;
+              border-top: 1px solid rgba(255, 255, 255, 0.08);
               font-size: 0.9rem;
-              color: #aaa;
+              color: #777;
           }
 
-          /* Responsive Design */
+          /* =============================================
+             RESPONSIVE DESIGN
+             ============================================= */
           @media (max-width: 768px) {
-              .hero h1 {
-                  font-size: 2rem;
-              }
+              .hero h1 { font-size: 2.2rem; }
+              .hero h2 { font-size: 1rem; }
 
-              .hero h2 {
-                  font-size: 1rem;
-              }
+              .nav-container { padding: 0 1rem; }
+              nav ul { gap: 1.5rem; }
 
-              .nav-container {
-                  padding: 0 var(--spacing-md);
-              }
+              section { padding: 4rem 0; }
 
-              nav ul {
-                  gap: var(--spacing-sm);
-              }
+              .gallery-grid { grid-template-columns: 1fr; }
 
-              .section-title h2 {
-                  font-size: 1.5rem;
-              }
+              .calendar-options { flex-direction: column; align-items: stretch; }
 
-              .accommodation-grid,
-              .rules-grid,
-              .location-section {
-                  grid-template-columns: 1fr;
-              }
-
-              .chat-widget {
-                  width: 50px;
-                  height: 50px;
-                  font-size: 1.2rem;
-                  bottom: 1.5rem;
-                  right: 1.5rem;
-              }
+              .footer-content { grid-template-columns: 1fr; text-align: center; }
+              .footer-links, .footer-contact { margin-bottom: 2rem; }
           }
 
           @media (max-width: 480px) {
-              .hero-buttons {
-                  flex-direction: column;
-                  align-items: stretch;
-              }
+              .hero-buttons { flex-direction: column; align-items: stretch; }
+              .btn { width: 100%; margin-bottom: 0.75rem; }
 
-              .btn {
-                  width: 100%;
-                  margin-bottom: var(--spacing-xs);
-              }
-
-              .calendar-info {
-                  flex-direction: column;
-                  align-items: stretch;
-              }
-
-              .footer-content {
-                  grid-template-columns: 1fr;
-                  text-align: center;
-              }
-
-              .footer-logo,
-              .footer-links,
-              .footer-contact,
-              .footer-social {
-                  margin-bottom: var(--spacing-md);
-              }
-          }
-
-          /* Utility Classes */
-          .hidden {
-              display: none !important;
-          }
-
-          .text-center {
-              text-align: center;
+              .hero h1 { font-size: 1.8rem; }
+              .hero h2 { font-size: 0.9rem; }
           }
       </style>
   </head>
@@ -772,17 +743,17 @@
       <!-- Header -->
       <header>
           <div class="nav-container">
-              <a href="#" class="logo">
+              <div class="logo">
                   <i class="fas fa-home"></i>
                   EnioHouse
-              </a>
+              </div>
               <nav>
                   <ul>
                       <li><a href="#home">Home</a></li>
-                      <li><a href="#la-casa">La Casa</a></li>
-                      <li><a href="#prenota">Prenota</a></li>
-                      <li><a href="#dove-siamo">Dove Siamo</a></li>
-                      <li><a href="#regole">Regole</a></li>
+                      <li><a href="#gallery">La Casa</a></li>
+                      <li><a href="#calendar">Prenota</a></li>
+                      <li><a href="#rules">Regole</a></li>
+                      <li><a href="#location">Dove Siamo</a></li>
                   </ul>
               </nav>
           </div>
@@ -791,8 +762,8 @@
       <!-- Hero Section -->
       <section class="hero animate-fade-in" id="home">
           <div class="hero-content">
-              <h1>EnioHouse - Casa Vacanze a Salionze</h1>
-              <h2>La tua casa vacanze perfetta nel cuore del Veneto. Comfort, tranquillità e accoglienza.</h2>
+              <h1>EnioHouse</h1>
+              <h2>Casa Vacanze a Salionze, Veneto</h2>
 
               <div class="availability-badge">
                   <i class="fas fa-check-circle"></i>
@@ -800,104 +771,174 @@
               </div>
 
               <div class="hero-buttons">
-                  <a href="#prenota" class="btn btn-primary">Prenota Ora</a>
-                  <a href="#la-casa" class="btn btn-secondary">Scopri di Più</a>
+                  <a href="#calendar" class="btn btn-primary">Verifica Disponibilità</a>
+                  <a href="#gallery" class="btn btn-secondary">Scopri la Casa</a>
               </div>
           </div>
       </section>
 
-      <!-- Sezione Descrizione Alloggio -->
-      <section id="la-casa">
+      <!-- Galleria Foto (USA LE TUE FOTO AIRBNB QUI) -->
+      <section class="gallery-section animate-fade-in animate-delay-1" id="gallery">
           <div class="container">
-              <div class="section-title">
-                  <h2>Scopri EnioHouse</h2>
-                  <p>Immersa nella tranquilla campagna veneta, EnioHouse offre il perfetto equilibrio tra comfort moderno e atmosfera autentica. Ideale per
-  famiglie, coppie o gruppi di amici che cercano un rifugio rilassante vicino alle città d'arte.</p>
-              </div>
+              <h2>Galleria Fotografica</h2>
+              <p style="text-align: center; max-width: 600px; margin: 0 auto 2.5rem; color: #666;">
+                  Immergiti nell'atmosfera di EnioHouse attraverso le nostre foto ufficiali.
+                  <strong>Nota importante:</strong> Sostituisci le immagini placeholder qui sotto con le tue foto reali da Airbnb
+                  (assicurati di avere i diritti per utilizzarle).
+              </p>
 
-              <div class="accommodation-grid">
-                  <div class="accommodation-card">
-                      <h3><i class="fas fa-users"></i> Capacità</h3>
-                      <div class="feature-list">
-                          <div class="feature-item"><i class="fas fa-bed"></i> 6 ospiti massimi</div>
-                          <div class="feature-item"><i class="fas fa-door-open"></i> 2 camere da letto</div>
-                          <div class="feature-item"><i class="fas fa-bed"></i> 4 letti</div>
-                          <div class="feature-item"><i class="fas fa-bath"></i> 1 bagno</div>
+              <div class="gallery-grid">
+                  <!-- ESEMPI - SOSTITUISCI QUESTI URL CON LE TUE FOTO REALI DA AIRBNB -->
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1582719478250-596923406047?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8
+  fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                           alt="Esterno di EnioHouse a Salionze - Vista sul giardino">
+                      <div class="gallery-overlay">
+                          <h3>Esterno Accogliente</h3>
+                          <p>Casa immersa nel verde veneto</p>
                       </div>
                   </div>
 
-                  <div class="accommodation-card">
-                      <h3><i class="fas fa-concierge-bell"></i> Servizi</h3>
-                      <div class="feature-list">
-                          <div class="feature-item"><i class="fas fa-utensils"></i> Cucina attrezzata</div>
-                          <div class="feature-item"><i class="fas fa-parking"></i> Parcheggio gratuito</div>
-                          <div class="feature-item"><i class="fas fa-tv"></i> TV Smart</div>
-                          <div class="feature-item"><i class="fas fa-tshirt"></i> Lavatrice</div>
-                          <div class="feature-item"><i class="fas fa-snowflake"></i> Aria condizionata</div>
-                          <div class="feature-item"><i class="fas fa-seedling"></i> Cortile privato</div>
-                          <div class="feature-item"><i class="fas fa-baby"></i> Seggiolone per bambini</div>
-                          <div class="feature-item"><i class="fas fa-snowflake"></i> Frigorifero</div>
-                          <div class="feature-item"><i class="fas fa-wifi"></i> WiFi veloce</div>
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXRhbGlhbiUyMGtpdGN
+  oZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+                           alt="Soggiorno luminoso con divano e tavolo da pranzo">
+                      <div class="gallery-overlay">
+                          <h3>Soggiorno Luminoso</h3>
+                          <p>Spazio living con zona pranzo</p>
+                      </div>
+                  </div>
+
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1556911133-572a41b4a28ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXRhbGlhbiUyMGN1Y2hpb
+  nxlbnwwfHwwfHx8fw%3D%3D&auto=format&fit=crop&w=1200&q=60"
+                           alt="Cucina attrezzata moderna con elettrodomestici">
+                      <div class="gallery-overlay">
+                          <h3>Cucina Attrezzata</h3>
+                          <p>Tutto ciò che serve per cucinare</p>
+                      </div>
+                  </div>
+
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkcm9vfGVufDB8
+  fDB8fHww%3D&auto=format&fit=crop&w=1200&q=60"
+                           alt="Camera da letto matrimoniale con letto king size">
+                      <div class="gallery-overlay">
+                          <h3>Camera Principale</h3>
+                          <p>Letto king size e armadio capiente</p>
+                      </div>
+                  </div>
+
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1580587771525-2e
+  b8b4b1f0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmF0aG98ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+                           alt="Bagno moderno con doccia walk-in">
+                      <div class="gallery-overlay">
+                          <h3>Bagno Elegante</h3>
+                          <p>Doccia walk-in e set di cortesia</p>
+                      </div>
+                  </div>
+
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1564503793550-b02e0c0d318ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8fHx8Y291cnRpbGV8ZW58MH
+  x8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+                           alt="Cortile privato con area pranzo e zona relax">
+                      <div class="gallery-overlay">
+                          <h3>Cortile Privato</h3>
+                          <p>Spazio esterno attrezzato per relax</p>
                       </div>
                   </div>
               </div>
           </div>
       </section>
 
-      <!-- Sezione Calendario Prenotazioni -->
-      <section id="prenota">
+      <!-- Sezione Calendario - INTEGRAZIONE REALE AIRBNB/BOOKING -->
+      <section class="calendar-section animate-fade-in animate-delay-2" id="calendar">
           <div class="container">
-              <div class="section-title">
-                  <h2>Verifica Disponibilità</h2>
-                  <p>Seleziona le date per il tuo soggiorno. Soggiorno minimo: 3 notti consecutive.</p>
-              </div>
+              <h2>Verifica Disponibilità in Tempo Reale</h2>
+              <p class="calendar-intro">
+                  Per vedere le date effettivamente disponibili e effettuare una prenotazione sicura,
+                  ti consigliamo di controllare il nostro calendario ufficiale su Airbnb o Booking.com.
+                  Qui sotto trovi le opzioni direct.
+              </p>
 
-              <div class="calendar-section">
-                  <div class="calendar-info">
-                      <div><i class="fas fa-calendar-alt"></i> Date disponibili: Verdi</div>
-                      <div><i class="fas fa-calendar-times"></i> Date occupate: Grigie</div>
-                      <div><i class="fas fa-user-friends"></i> Ospiti: 1-6</div>
+              <div class="calendar-options">
+                  <div class="calendar-option" onclick="window.open('https://www.airbnb.it/rooms/TUO_ID_PROPRIETA', '_blank')">
+                      <i class="fas fa-bed"></i>
+                      <h3>Airbnb</h3>
+                      <p>Calendario ufficiale e prenotazione diretta<br>Massima affidabilità e protezione</p>
                   </div>
 
-                  <div class="calendar-grid">
-                      <!-- Giorni della settimana -->
-                      <div class="calendar-header">Dom</div>
-                      <div class="calendar-header">Lun</div>
-                      <div class="calendar-header">Mar</div>
-                      <div class="calendar-header">Mer</div>
-                      <div class="calendar-header">Gio</div>
-                      <div class="calendar-header">Ven</div>
-                      <div class="calendar-header">Sab</div>
-
-                      <!-- Giorni del mese (esempio) -->
-                      <div class="calendar-day available" data-price="120€">1</div>
-                      <div class="calendar-day available" data-price="120€">2</div>
-                      <div class="calendar-day booked" data-price="">3</div>
-                      <div class="calendar-day available" data-price="120€">4</div>
-                      <div class="calendar-day available" data-price="120€">5</div>
-                      <div class="calendar-day available" data-price="120€">6</div>
-                      <div class="calendar-day available" data-price="120€">7</div>
-                      <!-- ... continua per tutto il mese ... -->
+                  <div class="calendar-option" onclick="window.open('https://www.booking.com/hotel/it/TUO_ID_PROPRIETA.it.html', '_blank')">
+                      <i class="fas fa-hotel"></i>
+                      <h3>Booking.com</h3>
+                      <p>Disponibilità in tempo reale<br>Cancellazione gratuita su molte tariffe</p>
                   </div>
 
-                  <p class="text-center" style="margin-top: var(--spacing-lg); font-size: 0.9rem; color: #666;">
-                      *Le date mostrate sono indicative. Per disponibilità effettiva e prenotazione, utilizza il form qui sotto o controlla il nostro <a
-  href="#" style="color: var(--terracotta); text-decoration: underline;">calendario Airbnb</a>.
-                  </p>
+                  <div class="calendar-option" id="embed-calendar-btn">
+                      <i class="fas fa-calendar-alt"></i>
+                      <h3>Calendario Integrato</h3>
+                      <p>Visualizza le disponibilità direttamente qui<br>(Richiede configurazione semplice)</p>
+                  </div>
               </div>
 
-              <!-- Form Prenotazione -->
-              <form class="booking-form animate-fade-in" id="bookingForm">
-                  <h3 class="text-center mb-4" style="color: var(--terracotta);">Richiedi Prenotazione</h3>
+              <!-- Container per calendario embeddato (da attivare col pulsante sopra) -->
+              <div class="calendar-embed" id="calendar-embed-container" style="display: none;">
+                  <!--
+                      COME CONFIGURARE QUESTO CALENDARIO EMBEDDATO:
+                      1. Vai su Airbnb > Il tuo annuncio > Impostazioni > Disponibilità > Synchronizza calendario
+                      2. Copia il link iCal (format: webcal://www.airbnb.com/calendar/ical/...?s=...)
+                      3. Usa un servizio gratuito come: https://www.airbnbcalendarsync.com/embed
+                         o https://www.tidely.com/ (piano gratuito disponibile)
+                      4. Incolla l'iframe che ti forniscono qui dentro al posto del commento seguente
+                  -->
+                  <!-- ESEMPIO DI IFRAME (SOSTITUISCI CON IL TUO): -->
+                  <!--
+                  <iframe
+                      src="https://www.airbnbcalendarsync.com/embed?calendar_url=TUO_LINK_ICAL_CODIFICATO&style=modern&locale=it"
+                      width="100%"
+                      height="500"
+                      frameborder="0"
+                      scrolling="no">
+                  </iframe>
+                  -->
+                  <div style="text-align: center; padding: 3rem; color: #666;">
+                      <p>Per attivare il calendario embeddato:</p>
+                      <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+                          <li>Ottieni il tuo link iCal da Airbnb (Impostazioni > Disponibilità > Synchronizza calendario)</li>
+                          <li>Usa un servizio gratuito di embed come <a href="https://www.airbnbcalendarsync.com/" target="_blank" style="color:
+  var(--terracotta);">Airbnb Calendar Sync</a></li>
+                          <li>Incolla l'iframe fornito al posto di questo messaggio</li>
+                      </ol>
+                      <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+                          <em>Alternativa semplice: usa direttamente i pulsanti Airbnb/Booking sopra per la massima affidabilità.</em>
+                      </p>
+                  </div>
+              </div>
+
+              <div style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+                  <p>⚠️ Importante: Per prenotazioni ufficiali e protezione completa, utilizza sempre <strong>Airbnb</strong> o <strong>Booking.com</strong>.
+
+                  Il calendario embeddato è solo indicativo e richiede configurazione tecnica.</p>
+              </div>
+          </div>
+      </section>
+
+      <!-- Form Prenotazione Semplificato (per richieste dirette) -->
+      <section class="booking-section animate-fade-in animate-delay-3" id="booking">
+          <div class="container">
+              <h2>Invia una Richiesta Diretta</h2>
+              <p style="text-align: center; max-width: 600px; margin: 0 auto 2.5rem; color: #666;">
+                  Preferisci contattarci direttamente? Compila il form qui sotto e Claudio ti risponderà entro 24 ore
+                  per confermare disponibilità e dettagli. <strong>Ricorda:</strong> soggiorno minimo 3 notti.
+              </p>
+
+              <form class="booking-form" id="bookingForm">
+                  <h3>Dati della Prenotazione</h3>
 
                   <div class="form-group">
                       <label for="nome">Nome *</label>
                       <input type="text" id="nome" required placeholder="Il tuo nome">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="cognome">Cognome *</label>
-                      <input type="text" id="cognome" required placeholder="Il tuo cognome">
                   </div>
 
                   <div class="form-group">
@@ -912,12 +953,12 @@
 
                   <div class="form-group">
                       <label for="checkin">Data Check-in *</label>
-                      <input type="date" id="checkin" required>
+                      <input type="date" id="checkin" required min="<?= date('Y-m-d'); ?>">
                   </div>
 
                   <div class="form-group">
                       <label for="checkout">Data Check-out *</label>
-                      <input type="date" id="checkout" required>
+                      <input type="date" id="checkout" required min="<?= date('Y-m-d', strtotime('+3 days')); ?>">
                   </div>
 
                   <div class="form-group">
@@ -935,76 +976,73 @@
 
                   <div class="form-group">
                       <label for="messaggio">Messaggio (opzionale)</label>
-                      <textarea id="messaggio" placeholder="Domande richieste speciali..."></textarea>
+                      <textarea id="messaggio" placeholder="Domande, richieste speciali o orari preferiti per check-in/check-out..."></textarea>
                   </div>
 
                   <button type="submit" class="btn btn-primary btn-submit">
-                      Conferma Prenotazione
+                      Invia Richiesta
                   </button>
               </form>
           </div>
       </section>
 
-      <!-- Sezione Regole della Casa -->
-      <section id="regole">
+      <!-- Sezione Regole -->
+      <section class="info-section animate-fade-in animate-delay-4" id="rules">
           <div class="container">
-              <div class="section-title">
-                  <h2>Regole della Casa</h2>
-                  <p>Per garantire un soggiorno piacevole a tutti i nostri ospiti, ti chiediamo di rispettare queste semplici linee guida.</p>
-              </div>
+              <h2><i class="fas fa-list-check"></i> Regole della Casa</h2>
+              <p>Per garantire un soggiorno piacevole a tutti, ti chiediamo gentilmente di rispettare queste linee guida semplici e ragionevoli.</p>
 
-              <div class="rules-grid">
-                  <div class="rule-card">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                  <div>
                       <h3><i class="fas fa-clock"></i> Orari Flessibili</h3>
-                      <p>Check-in e check-out da concordare direttamente con Claudio tramite la chat integrata. Massima flessibilità per adattarsi alle tue
-  esigenze di viaggio.</p>
+                      <p>Check-in e check-out da concordare direttamente con Claudio. Massima flessibilità per adattarsi alle tue esigenze di viaggio.</p>
                   </div>
 
-                  <div class="rule-card">
-                      <h3><i class="fas fa-users"></i> Numero Ospiti</h3>
-                      <p>Massimo 6 ospiti consentiti. Per gruppi più grandi, contattaci per valutare soluzioni alternative.</p>
+                  <div>
+                      <h3><i class="fas fa-users"></i> Numero Massimo Ospiti</h3>
+                      <p>Fino a 6 ospiti consentiti. Per gruppi più numerosi, contattaci per valutare soluzioni alternative.</p>
                   </div>
 
-                  <div class="rule-card">
+                  <div>
                       <h3><i class="fas fa-seedling"></i> Cortile Privato</h3>
-                      <p>Uso esclusivo del cortile posteriore. Ideale per colazioni all'aperto, relax serale o giochi per bambini.</p>
+                      <p>Uso esclusivo del cortile posteriore attrezzato. Ideale per colazioni, aperitivi o relax serale.</p>
                   </div>
 
-                  <div class="rule-card">
-                      <h3><i class="fas fa-parking"></i> Parcheggio</h3>
-                      <p>Parcheggio gratuito e privato nella proprietà. Accesso diretto dalla strada principale.</p>
-                  </div>
-
-                  <div class="rule-card">
+                  <div>
                       <h3><i class="fas fa-moon"></i> Rispetto della Quiete</h3>
                       <p>Si richiede silenzio dalle 22:00 alle 08:00 per rispettare il vicinato e garantire riposo a tutti gli ospiti.</p>
                   </div>
 
-                  <div class="rule-card">
-                      <h3><i class="fas fa-broom"></i> Pulizia Finale</h3>
-                      <p>Pulizia finale opzionale disponibile con costo aggiuntivo di 30€. Altrimenti, lasciaci la casa in ordine ragionevole.</p>
+                  <div>
+                      <h3><i class="fas fa-paw"></i> Animali Domestici</h3>
+                      <p>Animali ammessi previa accordo con Claudio. Possibili supplementi o restrizioni a seconda di tipo e dimensione.</p>
                   </div>
 
-                  <div class="rule-card">
-                      <h3><i class="fas fa-paw"></i> Animali Domestici</h3>
-                      <p>Animali ammessi previa accordo con Claudio. Possibili supplementi o restazioni a seconda del tipo e dimensione.</p>
+                  <div>
+                      <h3><i class="fas fa-broom"></i> Pulizia Finale</h3>
+                      <p>Pulizia finale opzionale disponibile (30€). Altrimenti, lasciaci la casa in ordine ragionevole.</p>
                   </div>
               </div>
           </div>
       </section>
 
       <!-- Sezione Dove Siamo -->
-      <section id="dove-siamo">
+      <section class="info-section animate-fade-in animate-delay-5" id="location">
           <div class="container">
-              <div class="section-title">
-                  <h2>Dove Siamo</h2>
-                  <p>EnioHouse si trova nella pittoresca frazione di Salionze, immersa nel verde del Veneto orientale. Una posizione strategica per esplorare
-  le città d'arte e godere della tranquillità della campagna.</p>
-              </div>
+              <h2><i class="fas fa-map-marker-alt"></i> Dove Siamo</h2>
+              <p>EnioHouse si trova nella tranquilla frazione di Salionze, immersa nel verde del Veneto orientale.
+                 Una posizione strategica per esplorare le città d'arte e godere della pace della campagna.</p>
 
-              <div class="location-section">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-top: 2rem;">
+                  <!-- Mappa -->
                   <div class="map-container">
-                      <!-- Sostituisci l'URL con le coordinate effettive di EnioHouse -->
+                      <!--
+                          SOSTITUISCI QUESTO IFRAME CON LE COORDINATE ESATTE DELLA TUA PROPRIETA':
+                          1. Vai su Google Maps
+                          2. Cerca l'indirizzo esatto di EnioHouse a Salionze
+                          3. Clicca su "Condividi" > "Incorpora una mappa"
+                          4. Copia l'iframe e sostituiscilo qui
+                      -->
                       <iframe
                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.84308477027!2d12.295123415580313!3d45.59876547882321!2m3!1f0!2f0!3f
   0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477ee9f6b2c1d5ad%3A0x8d3b5e5f0a1b2c3d!2sSalionze%2C%20Veneto!5e0!3m2!1sit!2sit!4v1687000000000!5m2!1sit!2sit"
@@ -1017,32 +1055,29 @@
                       </iframe>
                   </div>
 
-                  <div class="location-info">
-                      <p><i class="fas fa-map-marker-alt"></i> Indirizzo: Salionze, Veneto, Italia</p>
-                      <p><i class="fas fa-road"></i> Distanze:</p>
-                      <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
-                          <li><i class="fas fa-circle"></i> Venezia: 35 km (40 min in auto)</li>
-                          <li><i class="fas fa-circle"></i> Padova: 25 km (30 min in auto)</li>
-                          <li><i class="fas fa-circle"></i> Treviso: 20 km (25 min in auto)</li>
-                          <li><i class="fas fa-circle"></i> Verona: 60 km (50 min in auto)</li>
+                  <!-- Informazioni -->
+                  <div>
+                      <p><i class="fas fa-map-marker-alt"></i> <strong>Indirizzo:</strong> Salionze, Veneto, Italia</p>
+
+                      <p><i class="fas fa-road"></i> <strong>Distanze dalle principali città:</strong></p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li><i class="fas fa-circle"></i> Venezia: 35 km (~40 min in auto)</li>
+                          <li><i class="fas fa-circle"></i> Padova: 25 km (~30 min in auto)</li>
+                          <li><i class="fas fa-circle"></i> Treviso: 20 km (~25 min in auto)</li>
+                          <li><i class="fas fa-circle"></i> Verona: 60 km (~50 min in auto)</li>
                       </ul>
-                      <p><i class="fas fa-wine-glass-alt"></i> Attrazioni Vicine:</p>
-                      <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
-                          <li><i class="fas fa-circle"></i> Prosecco Hills & Wine Tours</li>
-                          <li><i class="fas fa-circle"></i> Mercatini di Natale di Feltre (stagionale)</li>
+
+                      <p><i class="fas fa-wine-glass-alt"></i> <strong>Attrazioni Vicine:</strong></p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li><i class="fas fa-circle"></i> Strada del Prosecco e vino dei Colli</li>
+                          <li><i class="fas fa-circle"></i> Città murate di Cittadella e Marostica</li>
                           <li><i class="fas fa-circle"></i> Parco Nazionale delle Dolomiti Bellunesi</li>
-                          <li><i class="fas fa-circle"></i> Città Murate di Cittadella e Marostica</li>
+                          <li><i class="fas fa-circle"></i> Mercatini di Natale di Feltre (stagionale)</li>
                       </ul>
                   </div>
               </div>
           </div>
       </section>
-
-      <!-- Link Airbnb (nel footer) -->
-      <!-- Chat Widget -->
-      <div class="chat-widget" id="chatWidget" title="Chatta con Claudio">
-          <i class="fas fa-comment-dots"></i>
-      </div>
 
       <!-- Footer -->
       <footer>
@@ -1052,21 +1087,21 @@
                       <i class="fas fa-home" style="font-size: 2.5rem; color: var(--terracotta);"></i>
                   </div>
                   <h3>EnioHouse</h3>
-                  <p>Casa Vacanze a Salionze</p>
+                  <p>Casa Vacanze a Salionze, Veneto</p>
               </div>
 
               <div class="footer-links">
                   <h4>Link Utili</h4>
                   <ul>
-                      <li><a href="#" style="color: var(--terracotta);">Visualizza su Airbnb</a></li>
-                      <li><a href="#regole">Regole della Casa</a></li>
+                      <li><a href="https://www.airbnb.it/rooms/TUO_ID_PROPRIETA" target="_blank">Visualizza su Airbnb</a></li>
+                      <li><a href="#rules">Regole della Casa</a></li>
                       <li><a href="#">Privacy Policy</a></li>
                       <li><a href="#">Termini di Servizio</a></li>
                   </ul>
               </div>
 
               <div class="footer-contact">
-                  <h4>Contatti</h4>
+                  <h4>Contatti Diretti</h4>
                   <ul>
                       <li><a href="mailto:claudio@eniohouse.it"><i class="fas fa-envelope"></i> claudio@eniohouse.it</a></li>
                       <li><a href="tel:+393331234567"><i class="fas fa-phone"></i> +39 333 123 4567</a></li>
@@ -1076,24 +1111,32 @@
 
               <div class="footer-social">
                   <h4>Seguici</h4>
-                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <div class="footer-social">
+                      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  </div>
               </div>
           </div>
 
           <div class="footer-bottom">
               <p>&copy; 2026 EnioHouse. Tutti i diritti riservati.</p>
               <p>Partita IVA: 01234567890 | CIR: 025042-CIM-00001</p>
+              <p style="margin-top: 1rem; font-size: 0.8rem; color: #555;">
+                  Le foto mostrate nella galleria sono estratte dal nostro annuncio ufficiale su Airbnb.
+                  Per utilizzarle altrove è necessario ottenere il permesso dal proprietario.
+              </p>
           </div>
       </footer>
 
       <script>
-          // Script per validazione form e funzionalità base
+          // Script per form validation e funzionalità base
           document.addEventListener('DOMContentLoaded', function() {
               const form = document.getElementById('bookingForm');
               const checkinInput = document.getElementById('checkin');
               const checkoutInput = document.getElementById('checkout');
+              const embedBtn = document.getElementById('embed-calendar-btn');
+              const embedContainer = document.getElementById('calendar-embed-container');
 
               // Validazione soggiorno minimo 3 notti
               if (form) {
@@ -1110,30 +1153,24 @@
                           return;
                       }
 
-                      // Qui integreresti il servizio di prenotazione (es. Formspree, Google Forms, o backend personalizzato)
-                      alert('Grazie per la tua richiesta! Claudio ti contatterà a breve via email o WhatsApp per confermare la prenotazione.');
+                      // Simulazione invio (da sostituire con servizio reale come Formspree o Netlify Forms)
+                      alert('Grazie per la tua richiesta! Claudio ti contatterà a breve via email o WhatsApp per confermare disponibilità e dettagli.');
                       form.reset();
                   });
               }
 
-              // Chat Widget semplice (da integrare con servizio terzo come Tidio, Crisp, etc.)
-              const chatWidget = document.getElementById('chatWidget');
-              if (chatWidget) {
-                  chatWidget.addEventListener('click', function() {
-                      // Esempio di integrazione con WhatsApp diretto (sostituisci con numero reale)
-
-  window.open('https://wa.me/393331234567?text=Buongiorno%20Claudio,%20sono%20interessato%20a%20prenotare%20EnioHouse%20per%20le%20date%20...', '_blank');
-
-                      // Per servizi professionali come Tidio:
-                      // window.tidioChatApi.open();
+              // Toggle calendario embeddato
+              if (embedBtn && embedContainer) {
+                  embedBtn.addEventListener('click', function() {
+                      const isHidden = embedContainer.style.display === 'none';
+                      embedContainer.style.display = isHidden ? 'block' : 'none';
+                      embedBtn.querySelector('i').className = isHidden ? 'fas fa-times' : 'fas fa-calendar-alt';
+                      embedBtn.querySelector('h3').textContent = isHidden ? 'Nascondi Calendario' : 'Calendario Integrato';
                   });
               }
 
               // Animazioni al scroll
-              const observerOptions = {
-                  threshold: 0.1
-              };
-
+              const observerOptions = { threshold: 0.1 };
               const observer = new IntersectionObserver((entries) => {
                   entries.forEach(entry => {
                       if (entry.isIntersecting) {
