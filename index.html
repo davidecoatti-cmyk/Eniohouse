@@ -16,26 +16,27 @@
               --accent2:#8A9A7B; /* verde salvia */
               --accent3:#D4AC2B; /* ocra */
               --whatsapp:#25D366;
-              --shadow-light:0 10px 30px rgba(0,0,0,0.05);
-              --shadow-medium:0 20px 40px rgba(0,0,0,0.08);
-              --transition:all 0.3s ease;
+              --shadow-light:0 8px 24px rgba(0,0,0,0.06);
+              --shadow-medium:0 16px 32px rgba(0,0,0,0.09);
+              --transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);
               --radius:20px;
-              --glass-bg:rgba(255,255,255,0.6);
-              --glass-blur:blur(10px);
+              --glass-bg:rgba(255,255,255,0.62);
+              --glass-blur:blur(12px);
+              --max-width:1360px;
           }
           *{margin:0;padding:0;box-sizing:border-box;}
           body{
               font-family:'Poppins',sans-serif;
               background:var(--bg-primary);
               color:var(--text-primary);
-              line-height:1.6;
+              line-height:1.7;
               overflow-x:hidden;
           }
           a{text-decoration:none;color:inherit;}
           ul{list-style:none;}
           img{max-width:100%;height:auto;display:block;}
-          /* ===================== Layout ===================== */
-          .container{width:90%;max-width:1400px;margin:0 auto;padding:0 1rem;}
+          /* Layout containers */
+          .container{width:90%;max-width:var(--max-width);margin:0 auto;padding:0 1rem;}
           .section{padding:6rem 0;}
           .section-title{text-align:center;font-size:2.8rem;font-weight:600;margin:0 0 1rem;position:relative;letter-spacing:0.5px;}
           .section-title::after{
@@ -43,14 +44,14 @@
               width:100px;height:4px;background:var(--accent2);border-radius:2px;
           }
           .section-subtitle{text-align:center;font-size:1.3rem;font-weight:300;text-transform:uppercase;letter-spacing:3px;margin-bottom:3rem;color:var(--accent2);}
-          /* ===================== Navbar ===================== */
+          /* Navbar */
           .navbar{
               position:sticky;top:0;z-index:1000;
-              background:rgba(255,255,255,0.85);
+              background:rgba(255,255,255,0.88);
               backdrop-filter:var(--glass-blur);
               padding:1rem 2rem;
               display:flex;justify-content:space-between;align-items:center;
-              box-shadow:0 2px 8px rgba(0,0,0,0.07);
+              box-shadow:0 2px 10px rgba(0,0,0,0.07);
           }
           .navbar-brand{font-size:1.8rem;font-weight:600;color:var(--accent1);}
           .navbar-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;}
@@ -64,19 +65,19 @@
           }
           .nav-link:hover::after{width:100%;}
           .nav-link:hover{color:var(--accent1);}
-          /* ===================== Hero ===================== */
+          /* Hero */
           .hero-section{
-              position:relative;height:100vh;min-height:700px;
+              position:relative;height:100vh;min-height:720px;
               background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
               display:flex;align-items:center;justify-content:center;
               text-align:center;color:#fff;overflow:hidden;
           }
           .hero-section::after{
-              content:'';position:absolute;inset:0;background:rgba(0,0,0,0.35);
+              content:'';position:absolute;inset:0;background:rgba(0,0,0,0.38);
           }
           .hero-content{position:relative;z-index:2;max-width:900px;padding:0 1.5rem;}
           .hero-section h1{
-              font-size:4.5rem;font-weight:600;letter-spacing:3px;line-height:1.1;
+              font-size:4.8rem;font-weight:600;letter-spacing:3px;line-height:1.1;
               text-shadow:0 2px 6px rgba(0,0,0,0.3);margin-bottom:0.8rem;
           }
           .hero-section p{
@@ -102,7 +103,7 @@
           }
           .btn-whatsapp:hover{background:#1ebe5d;transform:translateY(-3px);box-shadow:0 6px 18px rgba(37,211,102,0.45);}
           .btn-whatsapp i{font-size:1.4rem;}
-          /* ===================== Cards ===================== */
+          /* Cards */
           .card{
               background:var(--glass-bg);
               backdrop-filter:var(--glass-blur);
@@ -122,7 +123,7 @@
           }
           .card h3{font-size:1.8rem;font-weight:600;margin-bottom:1.2rem;color:var(--accent1);}
           .card p{font-size:1.05rem;color:#555;line-height:1.7;}
-          /* ===================== Services Grid ===================== */
+          /* Services grid */
           .services-grid{
               display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.8rem;
           }
@@ -133,7 +134,7 @@
               font-size:1.8rem;color:var(--accent2);
               min-width:40px;
           }
-          /* ===================== Pricing ===================== */
+          /* Pricing */
           .price-box{
               text-align:center;padding:3rem;border-radius:var(--radius);background:var(--glass-bg);
               backdrop-filter:var(--glass-blur);
@@ -147,7 +148,7 @@
               border-radius:12px;font-size:0.95rem;margin-top:0.7rem;
           }
           .price-box p{margin-top:1.3rem;font-size:0.98rem;color:#555;}
-          /* ===================== Gallery ===================== */
+          /* Gallery */
           .gallery{
               display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;
           }
@@ -173,7 +174,7 @@
               color:#fff;font-size:1.2rem;font-weight:600;
           }
           .gallery-item:hover .overlay{opacity:1;}
-          /* ===================== Calendar ===================== */
+          /* Calendar */
           .calendar{
               background:var(--glass-bg);
               backdrop-filter:var(--glass-blur);
@@ -235,7 +236,7 @@
               font-size:0.78rem;position:absolute;top:2px;left:2px;
               background:var(--accent2);color:#fff;padding:1px 4px;border-radius:4px;
           }
-          /* ===================== Guests Select ===================== */
+          /* Guests select */
           .guests-select{
               width:100%;padding:14px;border-radius:12px;border:1px solid #ddd;
               font-size:1.05rem;background:#fff;appearance:none;
@@ -246,7 +247,7 @@
           .guests-select:focus{
               outline:none;border-color:var(--accent1);box-shadow:0 0 0 2px rgba(196,138,122,0.2);
           }
-          /* ===================== Map Section ===================== */
+          /* Map */
           .map-section{
               display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;
           }
@@ -260,7 +261,7 @@
               transition:background .2s;
           }
           .map-fallback:hover{background:#e0e0e0;}
-          /* ===================== Rules ===================== */
+          /* Rules */
           .rules-list{
               display:grid;gap:1.2rem;
           }
@@ -274,7 +275,7 @@
               font-size:1.6rem;color:var(--accent2);margin-top:0.2rem;
               min-width:28px;
           }
-          /* ===================== Testimonials ===================== */
+          /* Testimonials */
           .testimonials{
               display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem;
           }
@@ -302,7 +303,7 @@
           .testimonial .author img{
               width:45px;height:45px;object-fit:cover;border-radius:50%;border:2px solid var(--accent2);
           }
-          /* ===================== FAQ ===================== */
+          /* FAQ */
           .faq-item{
               border-bottom:1px solid #eee;padding:1.5rem 0;
           }
@@ -322,7 +323,7 @@
               font-size:1.2rem;transition:transform .2s;
           }
           .faq-item.active .faq-toggle{transform:rotate(180deg);}
-          /* ===================== Newsletter ===================== */
+          /* Newsletter */
           .newsletter{
               background:var(--glass-bg);
               backdrop-filter:var(--glass-blur);
@@ -354,7 +355,7 @@
               transition:background .2s;
           }
           .newsletter-btn:hover{background:#b0766a;}
-          /* ===================== Footer ===================== */
+          /* Footer */
           footer{
               background:#fff;padding:4rem 2rem 2rem;border-top:1px solid #eee;
           }
@@ -382,7 +383,7 @@
               cursor:pointer;opacity:0.8;transition:opacity .2s, transform .2s;z-index:999;
           }
           .back-to-top:hover{opacity:1;transform:translateY(-4px);}
-          /* ===================== Responsive ===================== */
+          /* Responsive */
           @media(max-width:992px){
               .map-section{grid-template-columns:1fr;}
               .section-title{font-size:2.4rem;}
@@ -478,38 +479,42 @@
           <div class="card" style="margin-top:2rem;">
               <h3>Galleria fotografica</h3>
               <div class="gallery">
-                  <!-- Immagini Airbnb style -->
+                  <!-- Luxury Kitchen -->
                   <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Soggiorno elegante">
-                      <div class="overlay">Soggiorno</div>
-                  </div>
-                  <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1582719478250-5d1c6a2b8b2b?auto=format&fit=crop&w=1600&q=80" alt="Camera matrimoniale">
-                      <div class="overlay">Camera Master</div>
-                  </div>
-                  <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1564140401862-3b7e0f5c8b5a?auto=format&fit=crop&w=1600&q=80" alt="Cortile privato">
-                      <div class="overlay">Cortile</div>
-                  </div>
-                  <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1556911044-58e13e9b6b5e?auto=format&fit=crop&w=1600&q=80" alt="Bagno di design">
-                      <div class="overlay">Bagno Spa</div>
-                  </div>
-                  <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80" alt="Cucina gourmet">
+                      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80" alt="Cucina di lusso">
                       <div class="overlay">Cucina Gourmet</div>
                   </div>
+                  <!-- Modern Bedroom -->
                   <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1600&q=80" alt="Area pranzo">
+                      <img src="https://images.unsplash.com/photo-1582719478250-5d1c6a2b8b2b?auto=format&fit=crop&w=1600&q=80" alt="Camera matrimoniale moderna">
+                      <div class="overlay">Camera Master</div>
+                  </div>
+                  <!-- Private Courtyard -->
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1564140401862-3b7e0f5c8b5a?auto=format&fit=crop&w=1600&q=80" alt="Cortile privato">
+                      <div class="overlay">Cortile Privato</div>
+                  </div>
+                  <!-- Italian Bathroom -->
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1556911044-58e13e9b6b5e?auto=format&fit=crop&w=1600&q=80" alt="Bagno italiano di design">
+                      <div class="overlay">Bagno Spa</div>
+                  </div>
+                  <!-- Extra images for richness -->
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Vista soggiorno">
+                      <div class="overlay">Soggiorno Elegante</div>
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://images.unsplash.com/photo-1512917774080-9991f4c4c750?auto=format&fit=crop&w=1600&q=80" alt="Area pranzo">
                       <div class="overlay">Sala Pranzo</div>
                   </div>
                   <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1512917774080-9991f4c4c750?auto=format&fit=crop&w=1600&q=80" alt="Vista giardino">
-                      <div class="overlay">Vista Giardino</div>
+                      <img src="https://images.unsplash.com/photo-1505691938895-1f56f74b0655?auto=format&fit=crop&w=1600&q=80" alt="Terrazza solarium">
+                      <div class="overlay">Terrazza Solarium</div>
                   </div>
                   <div class="gallery-item">
-                      <img src="https://images.unsplash.com/photo-1505691938895-1f56f74b0655?auto=format&fit=crop&w=1600&q=80" alt="Terrazza">
-                      <div class="overlay">Terrazza Solarium</div>
+                      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1600&q=80" alt="Vista giardino">
+                      <div class="overlay">Vista Giardino</div>
                   </div>
               </div>
           </div>
@@ -678,305 +683,5 @@
               </div>
               <div class="faq-answer">
                   Disponiamo di connessione Fibra fino a 1 Gbps, ideale per smart working, streaming in 4K e gaming online.
-              </div>
-          </div>
-          <div class="faq-item">
-              <div class="faq-question">
-                  <span>Qual è la politica di cancellazione?</span>
-                  <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-              </div>
-              <div class="faq-answer">
-                  Cancellazione gratuita fino a 7 giorni prima del check-in. Dopo tale data verrà trattenuto il 50% dell'importo totale quale penale.
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Newsletter -->
-  <section class="section" style="background:#fff;">
-      <div class="container">
-          <h2 class="section-title">Resta aggiornato</h2>
-          <p class="section-subtitle">Newsletter</p>
-          <div class="card" style="max-width:500px;margin:0 auto;">
-              <div class="newsletter">
-                  <h3>Offerte esclusive e novità</h3>
-                  <p>Iscriviti per ricevere promozioni speciali, consigli di viaggio e aggiornamenti sulla disponibilità.</p>
-                  <form class="newsletter-form" id="newsletterForm">
-                      <input type="email" class="newsletter-input" placeholder="Il tuo indirizzo email" required>
-                      <button type="submit" class="newsletter-btn">Iscriviti</button>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-      <div class="container">
-          <div class="footer-cols">
-              <div class="footer-col">
-                  <h4>Contatti</h4>
-                  <p>📧 info@eniohouse.it</p>
-                  <p>📞 +39 333 1234567</p>
-                  <p>📍 Via delle Ville, 12 – 31050 Salionze (TV), Italia</p>
-              </div>
-              <div class="footer-col">
-                  <h4>Link Utili</h4>
-                  <a href="https://www.airbnb.it/" target="_blank">Airbnb</a>
-                  <a href="https://www.booking.com/" target="_blank">Booking.com</a>
-                  <a href="#" id="privacyLink">Privacy Policy</a>
-                  <a href="#" id="termsLink">Termini e Condizioni</a>
-              </div>
-              <div class="footer-col">
-                  <h4>Seguici</h4>
-                  <div class="social-icons">
-                      <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
-                      <a href="https://www.instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
-                      <a href="https://www.tiktok.com" target="_blank"><i class="bi bi-tiktok"></i></a>
-                      <a href="https://www.youtube.com" target="_blank"><i class="bi bi-youtube"></i></a>
-                  </div>
-              </div>
-          </div>
-          <div style="text-align:center;margin-top:2.5rem;color:#999;font-size:0.9rem;">
-              © 2026 EnioHouse. Tutti i diritti riservati.
-          </div>
-          <a href="#" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
-      </div>
-  </footer>
-
-  <script>
-      // Variabile proprietario - da modificare
-      const numeroProprietario = "PROMEMORIA: INSERISCI QUI IL NUMERO DI CLAUDIO";
-
-      // ============== CALENDARIO ==============
-      let currentDate = new Date();
-      let selectedStart = null;
-      let selectedEnd = null;
-
-      const monthYearEl = document.getElementById('monthYear');
-      const prevMonthBtn = document.getElementById('prevMonth');
-      const nextMonthBtn = document.getElementById('nextMonth');
-      const calendarDaysEl = document.getElementById('calendarDays');
-      const checkinInput = document.getElementById('checkinDate');
-      const checkoutInput = document.getElementById('checkoutDate');
-      const guestsSelect = document.getElementById('guestsSelect');
-      const whatsappBtn = document.getElementById('whatsappBtn');
-      const whatsappHero = document.getElementById('whatsappHero');
-
-      // Aggiorna il calendario
-      function renderCalendar() {
-          const year = currentDate.getFullYear();
-          const month = currentDate.getMonth(); // 0-11
-          monthYearEl.textContent = new Intl.DateTimeFormat('it-IT', { year: 'numeric', month: 'long' }).format(currentDate);
-          calendarDaysEl.innerHTML = '';
-
-          const firstDay = new Date(year, month, 1);
-          const lastDay = new Date(year, month + 1, 0);
-          const startingDay = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // lunedì = 0
-          const daysInMonth = lastDay.getDate();
-          const prevLastDay = new Date(year, month, 0).getDate();
-
-          // Giorni del mese precedente
-          for (let i = startingDay; i > 0; i--) {
-              const day = prevLastDay - i + 1;
-              const div = document.createElement('div');
-              div.className = 'calendar-day disabled';
-              div.innerHTML = `<span class="day-number">${day}</span>`;
-              calendarDaysEl.appendChild(div);
-          }
-
-          // Giorni del mese corrente
-          for (let day = 1; day <= daysInMonth; day++) {
-              const div = document.createElement('div');
-              div.className = 'calendar-day';
-              div.dataset.date = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-              div.innerHTML = `<span class="day-number">${day}</span>`;
-              // Disabilita giorni passati
-              const today = new Date();
-              today.setHours(0,0,0,0);
-              const cur = new Date(year, month, day);
-              if (cur < today) {
-                  div.classList.add('disabled');
-              }
-              // Evidenzia oggi
-              if (cur.toDateString() === today.toDateString()) {
-                  div.classList.add('today');
-              }
-              calendarDaysEl.appendChild(div);
-          }
-
-          // Completa la settimana con giorni del mese successivo
-          const totalCells = Math.ceil((startingDay + daysInMonth) / 7) * 7;
-          for (let i = startingDay + daysInMonth; i < totalCells; i++) {
-              const day = i - startingDay - daysInMonth + 1;
-              const div = document.createElement('div');
-              div.className = 'calendar-day disabled';
-              div.innerHTML = `<span class="day-number">${day}</span>`;
-              calendarDaysEl.appendChild(div);
-          }
-
-          // Aggiungi event listener ai giorni
-          document.querySelectorAll('.calendar-day:not(.disabled)').forEach(dayEl => {
-              dayEl.addEventListener('click', handleDayClick);
-          });
-      }
-
-      function handleDayClick(e) {
-          const dayEl = e.currentTarget;
-          const dateStr = dayEl.dataset.date; // YYYY-MM-DD
-          const dateObj = new Date(dateStr);
-
-          if (!selectedStart) {
-              selectedStart = dateObj;
-              dayEl.classList.add('selected-start');
-              checkinInput.value = dateStr;
-          } else if (!selectedEnd) {
-              selectedEnd = dateObj;
-              // Assicurati che check-in sia prima di check-out
-              if (selectedEnd < selectedStart) {
-                  [selectedStart, selectedEnd] = [selectedEnd, selectedStart];
-                  // aggiorna anche le classi sui giorni già selezionati
-                  document.querySelectorAll('.calendar-day').forEach(d => {
-                      d.classList.remove('selected-start', 'selected-end', 'in-range');
-                  });
-                  // ricolorare correttamente
-                  const startDiv = [...calendarDaysEl.children].find(d => d.dataset.date === selectedStart.toISOString().slice(0,10));
-                  const endDiv = [...calendarDaysEl.children].find(d => d.dataset.date === selectedEnd.toISOString().slice(0,10));
-                  if (startDiv) startDiv.classList.add('selected-start');
-                  if (endDiv) endDiv.classList.add('selected-end');
-                  // evidenzia range
-                  highlightRange();
-              } else {
-                  dayEl.classList.add('selected-end');
-                  checkoutInput.value = dateStr;
-              }
-              highlightRange();
-              validateStayLength();
-          } else {
-              // reset selezione
-              document.querySelectorAll('.calendar-day').forEach(d => {
-                  d.classList.remove('selected-start', 'selected-end', 'in-range');
-              });
-              selectedStart = dateObj;
-              selectedEnd = null;
-              dayEl.classList.add('selected-start');
-              checkinInput.value = dateStr;
-              checkoutInput.value = '';
-          }
-      }
-
-      function highlightRange() {
-          if (selectedStart && selectedEnd) {
-              const start = selectedStart.getTime();
-              const end = selectedEnd.getTime();
-              const days = [...calendarDaysEl.children];
-              days.forEach(dayEl => {
-                  if (dayEl.classList.contains('disabled')) return;
-                  const dayDate = new Date(dayEl.dataset.date);
-                  const time = dayDate.getTime();
-                  if (time > start && time < end) {
-                      dayEl.classList.add('in-range');
-                  } else {
-                      dayEl.classList.remove('in-range');
-                  }
-              });
-          }
-      }
-
-      function validateStayLength() {
-          if (selectedStart && selectedEnd) {
-              const diffTime = selectedEnd.getTime() - selectedStart.getTime();
-              const diffDays = diffTime / (1000 * 60 * 60 * 24);
-              if (diffDays < 3) {
-                  alert('EnioHouse richiede un soggiorno minimo di 3 notti. Per favore seleziona date diverse.');
-                  // reset
-                  document.querySelectorAll('.calendar-day').forEach(d => {
-                      d.classList.remove('selected-start', 'selected-end', 'in-range');
-                  });
-                  selectedStart = null;
-                  selectedEnd = null;
-                  checkinInput.value = '';
-                  checkoutInput.value = '';
-              }
-          }
-      }
-
-      // Navigazione mesi
-      prevMonthBtn.addEventListener('click', () => {
-          currentDate.setMonth(currentDate.getMonth() - 1);
-          renderCalendar();
-      });
-      nextMonthBtn.addEventListener('click', () => {
-          currentDate.setMonth(currentDate.getMonth() + 1);
-          renderCalendar();
-      });
-
-      // WhatsApp function
-      function generaLinkWhatsApp() {
-          const checkin = checkinInput.value;
-          const checkout = checkoutInput.value;
-          const guests = guestsSelect.value;
-
-          if (!checkin || !checkout) {
-              alert('Per favore seleziona sia la data di check-in che quella di check-out.');
-              return;
-          }
-
-          const message = `Ciao Claudio, vorrei richiedere informazioni per EnioHouse. Date: Dal ${checkin} al ${checkout}. Ospiti: ${guests}. Grazie!`;
-          const encodedMessage = encodeURIComponent(message);
-          const whatsappUrl = `https://wa.me/${numeroProprietario}?text=${encodedMessage}`;
-          window.open(whatsappUrl, '_blank');
-      }
-
-      whatsappBtn.addEventListener('click', generaLinkWhatsApp);
-      whatsappHero.addEventListener('click', generaLinkWhatsApp);
-
-      // Navbar mobile toggle
-      const navToggle = document.getElementById('navToggle');
-      const navList = document.getElementById('navList');
-      navToggle.addEventListener('click', () => {
-          navList.classList.toggle('open');
-      });
-
-      // FAQ toggle
-      document.querySelectorAll('.faq-question').forEach(item => {
-          item.addEventListener('click', () => {
-              const parent = item.parentElement;
-              parent.classList.toggle('active');
-          });
-      });
-
-      // Back to top
-      const backToTop = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-          if (window.scrollY > 300) {
-              backToTop.style.opacity = '1';
-          } else {
-              backToTop.style.opacity = '0.8';
-          }
-      });
-      backToTop.addEventListener('click', e => {
-          e.preventDefault();
-          window.scrollTo({top:0, behavior:'smooth'});
-      });
-
-      // Newsletter form (basic submission alert)
-      document.getElementById('newsletterForm').addEventListener('submit', e => {
-          e.preventDefault();
-          alert('Grazie per l\'iscrizione! Riceverai presto le nostre novità.');
-          e.target.reset();
-      });
-
-      // Lazy load immagini
-      document.addEventListener('DOMContentLoaded', () => {
-          const img = document.querySelectorAll('img');
-          img.forEach(i => {
-              i.setAttribute('loading', 'lazy');
-          });
-      });
-
-      // Inizializza calendario
-      renderCalendar();
-  </script>
-  </body>
-  </html>
+              </div
+  }
