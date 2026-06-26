@@ -1,1333 +1,688 @@
- 3  <head>
-         4     <meta charset="UTF-8">
-         5      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         6 -    <title>EnioHouse - Casa Vacanze a Salionze</title>
-         7 -    <meta name="description" content="EnioHouse - Casa vacanze di lusso a Salionze, Veneto. Prenota direttamente su Wha
-           -tsApp per il miglior prezzo garantito.">
-         8 -    <link rel="preconnect" href="https://fonts.googleapis.com">
-         9 -    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        10 -    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" r
-           -el="stylesheet">
-        11 -    <link rel="stylesheet" href="style.css">
-         6 +    <title>EnioHouse - Casa Vacanze di Lusso nel Veneto</title>
-         7 +    <!-- Google Fonts -->
-         8 +    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-         9 +    <!-- Font Awesome for icons -->
-        10 +    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        11 +    <style>
-        12 +        :root {
-        13 +            --primary-bg: #FDFBF7;
-        14 +            --primary-text: #2C2C2C;
-        15 +            --accent1: #C48A7A; /* Terracotta */
-        16 +            --accent2: #8A9A7B; /* Sage Green */
-        17 +            --accent3: #D4AC2B; /* Ochre */
-        18 +            --whatsapp-bg: #25D366;
-        19 +        }
-        20 +
-        21 +        * {
-        22 +            margin: 0;
-        23 +            padding: 0;
-        24 +            box-sizing: border-box;
-        25 +        }
-        26 +
-        27 +        body {
-        28 +            font-family: 'Poppins', sans-serif;
-        29 +            background-color: var(--primary-bg);
-        30 +            color: var(--primary-text);
-        31 +            line-height: 1.6;
-        32 +        }
-        33 +
-        34 +        a {
-        35 +            text-decoration: none;
-        36 +            color: inherit;
-        37 +        }
-        38 +
-        39 +        ul {
-        40 +            list-style: none;
-        41 +        }
-        42 +
-        43 +        img {
-        44 +            max-width: 100%;
-        45 +            height: auto;
-        46 +            display: block;
-        47 +        }
-        48 +
-        49 +        /* Navbar */
-        50 +        .navbar {
-        51 +            position: fixed;
-        52 +            top: 0;
-        53 +            left: 0;
-        54 +            width: 100%;
-        55 +            background: rgba(253, 251, 247, 0.9);
-        56 +            backdrop-filter: blur(10px);
-        57 +            padding: 1rem 5%;
-        58 +            display: flex;
-        59 +            justify-content: space-between;
-        60 +            align-items: center;
-        61 +            z-index: 1000;
-        62 +            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        63 +        }
-        64 +
-        65 +        .navbar .logo {
-        66 +            font-size: 1.8rem;
-        67 +            font-weight: 700;
-        68 +            color: var(--accent1);
-        69 +        }
-        70 +
-        71 +        .navbar .nav-links {
-        72 +            display: flex;
-        73 +            gap: 2rem;
-        74 +        }
-        75 +
-        76 +        .navbar .nav-links a {
-        77 +            font-weight: 500;
-        78 +            transition: color 0.3s;
-        79 +        }
-        80 +
-        81 +        .navbar .nav-links a:hover {
-        82 +            color: var(--accent1);
-        83 +        }
-        84 +
-        85 +        .navbar .hamburger {
-        86 +            display: none;
-        87 +            flex-direction: column;
-        88 +            gap: 5px;
-        89 +            cursor: pointer;
-        90 +        }
-        91 +
-        92 +        .navbar .hamburger span {
-        93 +            width: 25px;
-        94 +            height: 3px;
-        95 +            background-color: var(--primary-text);
-        96 +            transition: 0.3s;
-        97 +        }
-        98 +
-        99 +        /* Hero Section */
-       100 +        .hero {
-       101 +            height: 100vh;
-       102 +            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3f
-           +DB8MHxzZWFyY2h8Mnx8bHV4dXJ5JTIwdmlsbGF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60') center/cover no-repeat;
-       103 +            position: relative;
-       104 +            display: flex;
-       105 +            flex-direction: column;
-       106 +            justify-content: center;
-       107 +            align-items: center;
-       108 +            text-align: center;
-       109 +            padding: 0 2rem;
-       110 +        }
-       111 +
-       112 +        .hero::before {
-       113 +            content: '';
-       114 +            position: absolute;
-       115 +            top: 0;
-       116 +            left: 0;
-       117 +            width: 100%;
-       118 +            height: 100%;
-       119 +            background: rgba(0, 0, 0, 0.4);
-       120 +        }
-       121 +
-       122 +        .hero-content {
-       123 +            position: relative;
-       124 +            z-index: 1;
-       125 +            max-width: 800px;
-       126 +        }
-       127 +
-       128 +        .hero h1 {
-       129 +            font-size: 3rem;
-       130 +            font-weight: 700;
-       131 +            letter-spacing: 2px;
-       132 +            margin-bottom: 1rem;
-       133 +        }
-       134 +
-       135 +        .hero p {
-       136 +            font-size: 1.2rem;
-       137 +            font-weight: 300;
-       138 +            margin-bottom: 2rem;
-       139 +        }
-       140 +
-       141 +        .hero-buttons {
-       142 +            display: flex;
-       143 +            gap: 1.5rem;
-       144 +        }
-       145 +
-       146 +        .btn {
-       147 +            padding: 15px 30px;
-       148 +            border-radius: 50px;
-       149 +            font-weight: 600;
-       150 +            transition: all 0.3s ease;
-       151 +            cursor: pointer;
-       152 +            border: none;
-       153 +            display: inline-flex;
-       154 +            align-items: center;
-       155 +            gap: 10px;
-       156 +        }
-       157 +
-       158 +        .btn-primary {
-       159 +            background-color: var(--accent1);
-       160 +            color: white;
-       161 +            box-shadow: 0 5px 15px rgba(196, 138, 122, 0.4);
-       162 +        }
-       163 +
-       164 +        .btn-primary:hover {
-       165 +            transform: translateY(-3px);
-       166 +            box-shadow: 0 8px 20px rgba(196, 138, 122, 0.6);
-       167 +        }
-       168 +
-       169 +        .btn-outline {
-       170 +            background: transparent;
-       171 +            color: white;
-       172 +            border: 2px solid white;
-       173 +        }
-       174 +
-       175 +        .btn-outline:hover {
-       176 +            background: rgba(255,255,255,0.1);
-       177 +            transform: translateY(-3px);
-       178 +        }
-       179 +
-       180 +        .btn-whatsapp {
-       181 +            background-color: var(--whatsapp-bg);
-       182 +            color: white;
-       183 +        }
-       184 +
-       185 +        .btn-whatsapp:hover {
-       186 +            transform: translateY(-3px(-3px);
-       187 +            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-       188 +        }
-       189 +
-       190 +        /* Pulse animation for WhatsApp button */
-       191 +        @keyframes pulse {
-       192 +            0% {
-       193 +                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-       194 +            }
-       195 +            70% {
-       196 +                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-       197 +            }
-       198 +            100% {
-       199 +                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-       200 +            }
-       201 +        }
-       202 +
-       203 +        .btn-whatsapp {
-       204 +            animation: pulse 2s infinite;
-       205 +        }
-       206 +
-       207 +        /* La Casa Section */
-       208 +        .section {
-       209 +            padding: 6rem 5%;
-       210 +        }
-       211 +
-       212 +        .section-title {
-       213 +            text-align: center;
-       214 +            font-size: 2.5rem;
-       215 +            font-weight: 600;
-       216 +            margin-bottom: 3rem;
-       217 +            position: relative;
-       218 +        }
-       219 +
-       220 +        .section-title::after {
-       221 +            content: '';
-       222 +            position: absolute;
-       223 +            bottom: -10px;
-       224 +            left: 50%;
-       225 +            transform: translateX(-50%);
-       226 +            width: 80px;
-       227 +            height: 4px;
-       228 +            background-color: var(--accent1);
-       229 +            border-radius: 2px;
-       230 +        }
-       231 +
-       232 +        .la-casa-content {
-       233 +            display: flex;
-       234 +            gap: 3rem;
-       235 +            align-items: flex-start;
-       236 +        }
-       237 +
-       238 +        .la-casa-text {
-       239 +            flex: 1;
-       240 +        }
-       241 +
-       242 +        .la-casa-text h2 {
-       243 +            font-size: 2rem;
-       244 +            margin-bottom: 1.5rem;
-       245 +            color: var(--accent1);
-       246 +        }
-       247 +
-       248 +        .la-casa-text p {
-       249 +            margin-bottom: 1.5rem;
-       250 +        }
-       251 +
-       252 +        .features-grid {
-       253 +            display: grid;
-       254 +            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-       255 +            gap: 2rem;
-       256 +            margin-top: 2rem;
-       257 +        }
-       258 +
-       259 +        .feature-box {
-       260 +            text-align: center;
-       261 +            padding: 2rem;
-       262 +            background: white;
-       263 +            border-radius: 20px;
-       264 +            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       265 +            transition: transform 0.3s;
-       266 +        }
-       267 +
-       268 +        .feature-box:hover {
-       269 +            transform: translateY(-5px);
-       270 +        }
-       271 +
-       272 +        .feature-icon {
-       273 +            font-size: 3.5rem;
-       274 +            color: var(--accent2);
-       275 +            margin-bottom: 1rem;
-       276 +        }
-       277 +
-       278 +        .feature-box h3 {
-       279 +            font-size: 1.3rem;
-       280 +            margin-bottom: 0.5rem;
-       281 +        }
-       282 +
-       283 +        .services-list {
-       284 +            margin-top: 2rem;
-       285 +        }
-       286 +
-       287 +        .services-list h3 {
-       288 +            font-size: 1.5rem;
-       289 +            margin-bottom: 1rem;
-       290 +            color: var(--accent1);
-       291 +        }
-       292 +
-       293 +        .services-items {
-       294 +            display: grid;
-       295 +            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-       296 +            gap: 1rem;
-       297 +        }
-       298 +
-       299 +        .service-item {
-       300 +            display: flex;
-       301 +            align-items: center;
-       302 +            gap: 0.8rem;
-       303 +        }
-       304 +
-       305 +        .service-item i {
-       306 +            color: var(--accent2);
-       307 +            font-size: 1.2rem;
-       308 +        }
-       309 +
-       310 +        /* Prenota e Risparmia Section */
-       311 +        .prenota {
-       312 +            background: white;
-       313 +            border-radius: 20px;
-       314 +            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       315 +            padding: 3rem;
-       316 +        }
-       317 +
-       318 +        .prenota-content {
-       319 +            text-align: center;
-       320 +        }
-       321 +
-       322 +        .prenota-badge {
-       323 +            display: inline-block;
-       324 +            background: var(--accent2);
-       325 +            color: white;
-       326 +            padding: 0.5rem 1rem;
-       327 +            border-radius: 20px;
-       328 +            font-size: 0.9rem;
-       329 +            font-weight: 600;
-       330 +            text-transform: uppercase;
-       331 +            letter-spacing: 1px;
-       332 +            margin-bottom: 1.5rem;
-       333 +        }
-       334 +
-       335 +        .prenota h2 {
-       336 +            font-size: 2.2rem;
-       337 +            margin-bottom: 1.5rem;
-       338 +            color: var(--accent1);
-       339 +        }
-       340 +
-       341 +        .price-box {
-       342 +            display: flex;
-       343 +            justify-content: center;
-       344 +            align-items: center;
-       345 +            gap: 2rem;
-       346 +            margin: 2rem 0;
-       347 +            flex-wrap: wrap;
-       348 +        }
-       349 +
-       350 +        .price-direct {
-       351 +            background: var(--accent1);
-       352 +            color: white;
-       353 +            padding: 2rem;
-       354 +            border-radius: 15px;
-       355 +            min-width: 200px;
-       356 +            text-align: center;
-       357 +        }
-       358 +
-       359 +        .price-direct .amount {
-       360 +            font-size: 2.5rem;
-       361 +            font-weight: 700;
-       362 +        }
-       363 +
-       364 +        .price-direct .period {
-       365 +            font-size: 1.1rem;
-       366 +            opacity: 0.9;
-       367 +        }
-       368 +
-       369 +        .price-platform {
-       370 +            text-decoration: line-through;
-       371 +            color: #999;
-       372 +            padding: 2rem;
-       373 +            border-radius: 15px;
-       374 +            min-width: 200px;
-       375 +            text-align: center;
-       376 +            background: #f8f9fa;
-       377 +        }
-       378 +
-       379 +        .price-platform .amount {
-       380 +            font-size: 2.5rem;
-       381 +            font-weight: 700;
-       382 +        }
-       383 +
-       384 +        .price-platform .period {
-       385 +            font-size: 1.1rem;
-       386 +            opacity: 0.7;
-       387 +        }
-       388 +
-       389 +        .prenota-text {
-       390 +            max-width: 800px;
-       391 +            margin: 0 auto;
-       392 +        }
-       393 +
-       394 +        /* Calendar Section */
-       395 +        .calendar-section {
-       396 +            background: white;
-       397 +            border-radius: 20px;
-       398 +            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       399 +            padding: 3rem;
-       400 +        }
-       401 +
-       402 +        .calendar-header {
-       403 +            display: flex;
-       404 +            justify-content: space-between;
-       405 +            align-items: center;
-       406 +            margin-bottom: 2rem;
-       407 +            flex-wrap: wrap;
-       408 +            gap: 1rem;
-       409 +        }
-       410 +
-       411 +        .calendar-header h2 {
-       412 +            font-size: 2rem;
-       413 +            color: var(--accent1);
-       414 +        }
-       415 +
-       416 +        .calendar-nav {
-       417 +            display: flex;
-       418 +            align-items: center;
-       419 +            gap: 1rem;
-       420 +        }
-       421 +
-       422 +        .calendar-nav button {
-       423 +            background: transparent;
-       424 +            border: none;
-       425 +            font-size: 1.5rem;
-       426 +            color: var(--primary-text);
-       427 +            cursor: pointer;
-       428 +            width: 40px;
-       429 +            height: 40px;
-       430 +            display: flex;
-       431 +            align-items: center;
-       432 +            justify-content: center;
-       433 +            border-radius: 50%;
-       434 +            transition: background 0.3s;
-       435 +        }
-       436 +
-       437 +        .calendar-nav button:hover {
-       438 +            background: rgba(0,0,0,0.05);
-       439 +        }
-       440 +
-       441 +        .calendar-nav span {
-       442 +            font-weight: 600;
-       443 +            min-width: 120px;
-       444 +            text-align: center;
-       445 +        }
-       446 +
-       447 +        .calendar-grid {
-       448 +            display: grid;
-       449 +            grid-template-columns: repeat(7, 1fr);
-       450 +            gap: 0.5rem;
-       451 +            margin-bottom: 2rem;
-       452 +        }
-       453 +
-       454 +        .calendar-day {
-       455 +            aspect-ratio: 1;
-       456 +            background: #f8f9fa;
-       457 +            border-radius: 15px;
-       458 +            display: flex;
-       459 +            align-items: center;
-       460 +            justify-content: center;
-       461 +            font-weight: 600;
-       462 +            cursor: pointer;
-       463 +            transition: all 0.3s;
-       464 +            position: relative;
-       465 +            overflow: hidden;
-       466 +        }
-       467 +
-       468 +        .calendar-day.disabled {
-       469 +            color: #ccc;
-       470 +            cursor: not-allowed;
-       471 +        }
-       472 +
-       473 +        .calendar-day:hover:not(.disabled) {
-       474 +            background: #e9ecef;
-       475 +            transform: scale(1.05);
-       476 +        }
-       477 +
-       478 +        .calendar-day.selected {
-       479 +            background: linear-gradient(135deg, var(--accent1), var(--accent3));
-       480 +            color: white;
-       481 +        }
-       482 +
-       483 +        .calendar-day.in-range {
-       484 +            background: var(--accent3);
-       485 +            color: white;
-       486 +        }
-       487 +
-       488 +        .calendar-day.weekend {
-       489 +            color: var(--accent2);
-       490 +        }
-       491 +
-       492 +        .calendar-weekday {
-       493 +            font-weight: 600;
-       494 +            color: var(--accent2);
-       495 +            text-align: center;
-       496 +            padding: 0.5rem;
-       497 +        }
-       498 +
-       499 +        .guest-select {
-       500 +            display: flex;
-       501 +            flex-direction: column;
-       502 +            gap: 0.5rem;
-       503 +        }
-       504 +
-       505 +        .guest-select label {
-       506 +            font-weight: 600;
-       507 +        }
-       508 +
-       509 +        .guest-select select {
-       510 +            padding: 0.8rem;
-       511 +            border: 2px solid #e9ecef;
-       512 +            border-radius: 10px;
-       513 +            font-size: 1rem;
-       514 +            background: white;
-       515 +            cursor: pointer;
-       516 +        }
-       517 +
-       518 +        .whatsapp-btn {
-       519 +            width: 100%;
-       520 +            padding: 1.5rem;
-       521 +            background: var(--whatsapp-bg);
-       522 +            color: white;
-       523 +            border: none;
-       524 +            border-radius: 50px;
-       525 +            font-size: 1.2rem;
-       526 +            font-weight: 600;
-       527 +            display: flex;
-       528 +            justify-content: center;
-       529 +            align-items: center;
-       530 +            gap: 0.8rem;
-       531 +            cursor: pointer;
-       532 +            transition: all 0.3s;
-       533 +            margin-top: 1rem;
-       534 +        }
-       535 +
-       536 +        .whatsapp-btn:hover {
-       537 +            transform: translateY(-3px);
-       538 +            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-       539 +        }
-       540 +
-       541 +        /* Dove Siamo Section */
-       542 +        .dove-siamo {
-       543 +            display: grid;
-       544 +            grid-template-columns: 1fr 1fr;
-       545 +            gap: 3rem;
-       546 +            align-items: start;
-       547 +        }
-       548 +
-       549 +        .dove-siamo-text h2 {
-       550 +            font-size: 2rem;
-       551 +            margin-bottom: 1.5rem;
-       552 +            color: var(--accent1);
-       553 +        }
-       554 +
-       555 +        .dove-siamo-text p {
-       556 +            margin-bottom: 1.5rem;
-       557 +        }
-       558 +
-       559 +        .dove-siamo-map {
-       560 +            border-radius: 20px;
-       561 +            overflow: hidden;
-       562 +            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-       563 +            aspect-ratio: 16/9;
-       564 +        }
-       565 +
-       566 +        /* Regole Section */
-       567 +        .regole {
-       568 +            background: white;
-       569 +            border-radius: 20px;
-       570 +            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       571 +            padding: 3rem;
-       572 +        }
-       573 +
-       574 +        .regole h2 {
-       575 +            text-align: center;
-       576 +            font-size: 2rem;
-       577 +            margin-bottom: 2.5rem;
-       578 +            color: var(--accent1);
-       579 +        }
-       580 +
-       581 +        .regole-list {
-       582 +            display: grid;
-       583 +            gap: 1.5rem;
-       584 +        }
-       585 +
-       586 +        .regole-item {
-       587 +            display: flex;
-       588 +            align-items: flex-start;
-       589 +            gap: 1rem;
-       590 +            padding: 1rem;
-       591 +            background: #f8f9fa;
-       592 +            border-radius: 15px;
-       593 +        }
-       594 +
-       595 +        .regole-item i {
-       596 +            color: var(--accent2);
-       597 +            font-size: 1.5rem;
-       598 +            margin-top: 0.2rem;
-       599 +        }
-       600 +
-       601 +        .regole-item h3 {
-       602 +            font-size: 1.2rem;
-       603 +            margin-bottom: 0.5rem;
-       604 +            color: var(--accent1);
-       605 +        }
-       606 +
-       607 +        /* Footer */
-       608 +        .footer {
-       609 +            background: #f8f9fa;
-       610 +            padding: 4rem 5% 2rem;
-       611 +        }
-       612 +
-       613 +        .footer-content {
-       614 +            display: grid;
-       615 +            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-       616 +            gap: 2.5rem;
-       617 +            margin-bottom: 2rem;
-       618 +        }
-       619 +
-       620 +        .footer h3 {
-       621 +            font-size: 1.3rem;
-       622 +            margin-bottom: 1.5rem;
-       623 +            color: var(--accent1);
-       624 +        }
-       625 +
-       626 +        .footer p, .footer a {
-       627 +            color: #666;
-       628 +            margin-bottom: 0.8rem;
-       629 +            display: block;
-       630 +        }
-       631 +
-       632 +        .footer a:hover {
-       633 +            color: var(--accent1);
-       634 +        }
-       635 +
-       636 +        .social-icons {
-       637 +            display: flex;
-       638 +            gap: 1rem;
-       639 +        }
-       640 +
-       641 +        .social-icons a {
-       642 +            width: 40px;
-       643 +            height: 40px;
-       644 +            background: white;
-       645 +            border-radius: 50%;
-       646 +            display: flex;
-       647 +            align-items: center;
-       648 +            justify-content: center;
-       649 +            font-size: 1.2rem;
-       650 +            color: var(--primary-text);
-       651 +            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-       652 +            transition: all 0.3s;
-       653 +        }
-       654 +
-       655 +        .social-icons a:hover {
-       656 +            background: var(--accent1);
-       657 +            color: white;
-       658 +            transform: translateY(-3px);
-       659 +        }
-       660 +
-       661 +        .back-to-top {
-       662 +            position: fixed;
-       663 +            bottom: 2rem;
-       664 +            right: 2rem;
-       665 +            background: var(--accent1);
-       666 +            color: white;
-       667 +            width: 50px;
-       668 +            height: 50px;
-       669 +            border-radius: 50%;
-       670 +            display: flex;
-       671 +            align-items: center;
-       672 +            justify-content: center;
-       673 +            cursor: pointer;
-       674 +            box-shadow: 0 5px 15px rgba(196, 138, 122, 0.4);
-       675 +            z-index: 999;
-       676 +            opacity: 0.7;
-       677 +            transition: all 0.3s;
-       678 +        }
-       679 +
-       680 +        .back-to-top:hover {
-       681 +            opacity: 1;
-       682 +            transform: translateY(-3px);
-       683 +        }
-       684 +
-       685 +        /* Responsive Design */
-       686 +        @media (max-width: 768px) {
-       687 +            .navbar .nav-links {
-       688 +                position: fixed;
-       689 +                top: 70px;
-       690 +                left: -100%;
-       691 +                flex-direction: column;
-       692 +                background: rgba(253, 251, 247, 0.95);
-       693 +                width: 100%;
-       694 +                height: calc(100vh - 70px);
-       695 +                padding: 2rem;
-       696 +                transition: left 0.3s;
-       697 +                gap: 1.5rem;
-       698 +            }
-       699 +
-       700 +            .navbar .nav-links.active {
-       701 +                left: 0;
-       702 +            }
-       703 +
-       704 +            .navbar .hamburger {
-       705 +                display: flex;
-       706 +            }
-       707 +
-       708 +            .la-casa-content,
-       709 +            .dove-siamo {
-       710 +                flex-direction: column;
-       711 +            }
-       712 +
-       713 +            .hero h1 {
-       714 +                font-size: 2.2rem;
-       715 +            }
-       716 +
-       717 +            .hero p {
-       718 +                font-size: 1rem;
-       719 +            }
-       720 +
-       721 +            .hero-buttons {
-       722 +                flex-direction: column;
-       723 +            }
-       724 +
-       725 +            .price-box {
-       726 +                flex-direction: column;
-       727 +            }
-       728 +        }
-       729 +
-       730 +        /* Glassmorphism effect for calendar */
-       731 +        .calendar-grid {
-       732 +            background: rgba(255,255,255,0.7);
-       733 +            backdrop-filter: blur(10px);
-       734 +            border-radius: 20px;
-       735 +            padding: 1rem;
-       736 +        }
-       737 +    </style>
-       738  </head>
-       739  <body>
-        14 -    <!-- Header -->
-        15 -    <header class="hero">
-        16 -        <div class="hero__overlay"></div>
-        17 -        <img src="hero.jpg" alt="EnioHouse - Vista della casa vacanze a Salionze" class="hero__image" loading="lazy">
-        18 -        <div class="hero__content">
-        19 -            <h1 class="hero__title">EnioHouse - Casa Vacanze a Salionze</h1>
-        20 -            <p class="hero__subtitle">Immersa nel verde del Veneto, un rifugio di lusso per 6 ospiti.</p>
-        21 -            <a href="#booking" class="btn btn--whatsapp">Contatta su WhatsApp per Prenotare</a>
-       740 +    <!-- Navbar -->
-       741 +    <nav class="navbar">
-       742 +        <div class="logo">EnioHouse</div>
-       743 +        <ul class="nav-links">
-       744 +            <li><a href="#la-casa">La Casa</a></li>
-       745 +            <li><a href="#disponibilita">Disponibilità</a></li>
-       746 +            <li><a href="#dove-siamo">Dove Siamo</a></li>
-       747 +        </ul>
-       748 +        <div class="hamburger" id="hamburger">
-       749 +            <span></span>
-       750 +            <span></span>
-       751 +            <span></span>
-       752          </div>
-        23 -    </header>
-       753 +    </nav>
-       754
-        25 -    <!-- Descrizione e servizi -->
-        26 -    <section class="description section">
-        27 -        <h2 class="section__title">Scopri EnioHouse</h2>
-        28 -        <p class="section__text">EnioHouse è una elegante casa vacanze situata a Salionze, nel cuore del Veneto. Perfet
-           -ta per famiglie o gruppi di amici, offre:</p>
-        29 -        <ul class="features">
-        30 -            <li>✨ 6 ospiti</li>
-        31 -            <li>🛏️ 2 camere da letto</li>
-        32 -            <li>🛌 4 letti</li>
-        33 -            <li>🚿 1 bagno moderno</li>
-        34 -            <li>🌳 Giardino privato con zona relax</li>
-        35 -            <li>📶 Wi-Fi ultraveloce</li>
-        36 -            <li>🚗 Parcheggio privato</li>
-        37 -        </ul>
-       755 +    <!-- Hero Section -->
-       756 +    <section class="hero" id="hero">
-       757 +        <div class="hero-content">
-       758 +            <h1>EnioHouse</h1>
-       759 +            <p>Il tuo rifugio nel cuore del Veneto</p>
-       760 +            <div class="hero-buttons">
-       761 +                <a href="#disponibilita" class="btn btn-outline">Vedi Disponibilità</a>
-       762 +                <a href="https://wa.me/39NUMERO_PROPRIETARIO" class="btn btn-whatsapp" id="whatsapp-hero">
-       763 +                    <i class="fab fa-whatsapp"></i> Contattaci su WhatsApp
-       764 +                </a>
-       765 +            </div>
-       766 +        </div>
-       767      </section>
-       768
-        40 -    <!-- Galleria -->
-        41 -    <section class="gallery section">
-        42 -        <h2 class="section__title">Galleria</h2>
-        43 -        <div class="gallery__grid">
-        44 -            <img src="gallery1.jpg" alt="Soggiorno EnioHouse" loading="lazy">
-        45 -            <img src="gallery2.jpg" alt="Cucina EnioHouse" loading="lazy">
-        46 -            <img src="gallery3.jpg" alt="Camera da letto EnioHouse" loading="lazy">
-        47 -            <img src="gallery4.jpg" alt="Bagno EnioHouse" loading="lazy">
-        48 -            <img src="gallery5.jpg" alt="Giardino EnioHouse" loading="lazy">
-        49 -            <img src="gallery6.jpg" alt="Vista esterno EnioHouse" loading="lazy">
-       769 +    <!-- La Casa Section -->
-       770 +    <section class="section" id="la-casa">
-       771 +        <h2 class="section-title">La Casa</h2>
-       772 +        <div class="la-casa-content">
-       773 +            <div class="la-casa-text">
-       774 +                <h2>Un'oasi di pace e comfort</h2>
-       775 +                <p>Immersa nella tranquilla campagna veneta, EnioHouse offre un perfetto equilibrio tra charme rustico
-           +e comfort moderno. Questa villa ristrutturata con cura conserva l'autenticità delle tradizionali case di campagna, aggi
-           +ungendo tutti i servizi necessari per un soggiorno indimenticabile.</p>
-       776 +                <p>Goditi le mattine sorseggiando caffè nel cortile privato, pomeriggi rilassanti nel soggiorno luminos
-           +o e serate sotto le stelle nella nostra zona pranzo all'aperto. La posizione strategica permette di raggiungere facilme
-           +nte Venezia, Verona e il Lago di Garda, tornando poi al tuo rifugio di pace.</p>
-       777 +            </div>
-       778 +            <div class="features-grid">
-       779 +                <div class="feature-box">
-       780 +                    <i class="fas fa-users"></i>
-       781 +                    <h3>Ospiti</h3>
-       782 +                    <p>Fino a 6 persone</p>
-       783 +                </div>
-       784 +                <div class="feature-box">
-       785 +                    <i class="fas fa-bed"></i>
-       786 +                    <h3>Camere</h3>
-       787 +                    <p>2 camere da letto</p>
-       788 +                </div>
-       789 +                <div class="feature-box">
-       790 +                    <i class="fas fa-bed"></i>
-       791 +                    <h3>Letti</h3>
-       792 +                    <p>4 posti letto</p>
-       793 +                </div>
-       794 +                <div class="feature-box">
-       795 +                    <i class="fas fa-bath"></i>
-       796 +                    <h3>Bagni</h3>
-       797 +                    <p>1 bagno completo</p>
-       798 +                </div>
-       799 +            </div>
-       800          </div>
-       801 +        <div class="services-list">
-       802 +            <h3>Servizi Inclusi</h3>
-       803 +            <div class="services-items">
-       804 +                <div class="service-item"><i class="fas fa-utensils"></i><span>Cucina completamente attrezzata</span></
-           +div>
-       805 +                <div class="service-item"><i class="fas fa-parking"></i><span>Parcheggio privato</span></div>
-       806 +                <div class="service-item"><i class="fas fa-tv"></i><span>Smart TV</span></div>
-       807 +                <div class="service-item"><i class="fas fa-wifi"></i><span>WiFi gratuito</span></div>
-       808 +                <div class="service-item"><i class="fas fa-snowflake"></i><span>Aria Condizionata</span></div>
-       809 +                <div class="service-item"><i class="fas fa-shirt"></i><span>Lavatrice</span></div>
-       810 +                <div class="service-item"><i class="fas fa-tree"></i><span>Cortile Privato</span></div>
-       811 +                <div class="service-item"><i class="fas fa-baby"></i><span>Seggiolone</span></div>
-       812 +            </div>
-       813 +        </div>
-       814      </section>
-       815
-        53 -    <!-- Calendario e prenotazione -->
-        54 -    <section id="booking" class="booking section">
-        55 -        <h2 class="section__title">Verifica disponibilità e prenota</h2>
-        56 -        <div class="booking__calendar-container">
-        57 -            <div id="calendar"></div>
-       816 +    <!-- Prenota e Risparmia Section -->
-       817 +    <section class="section prenota" id="prenota">
-       818 +        <div class="prenota-content">
-       819 +            <span class="prenota-badge">Risparmia il 15%</span>
-       820 +            <h2>Prenota Direttamente e Risparmia</h2>
-       821 +            <div class="price-box">
-       822 +                <div class="price-direct">
-       823 +                    <div class="amount">110€</div>
-       824 +                    <div class="period">a notte</div>
-       825 +                </div>
-       826 +                <div class="price-platform">
-       827 +                    <div class="amount">130€</div>
-       828 +                    <div class="period">su piattaforme</div>
-       829 +                </div>
-       830 +            </div>
-       831 +            <p class="prenota-text">
-       832 +                Prenotando direttamente sul nostro sito, saltiamo le commissioni delle piattaforme di terze parti e pos
-           +siamo offrirti un prezzo migliore insieme a condizioni più flessibili, come check-in personalizzato e politiche di canc
-           +ellazione vantaggiose.
-       833 +            </p>
-       834          </div>
-        59 -        <div class="booking__summary">
-        60 -            <p>Check-in: <span id="checkin-display">-</span></p>
-        61 -            <p>Check-out: <span id="checkout-display">-</span></p>
-        62 -            <p>Ospiti: <input type="number" id="guests-input" min="1" max="6" value="2" style="width:50px;"></p>
-        63 -            <p>Prezzo per notte: <span id="price-per-night">150 €</span></p>
-        64 -            <p>Totale soggiorno: <span id="total-price">0 €</span></p>
-        65 -            <p class="badge">Prenotando qui risparmi rispetto alle OTA (Booking/Airbnb)</p>
-        66 -            <button id="whatsapp-btn" class="btn btn--whatsapp">Invia Richiesta su WhatsApp</button>
-        67 -        </div>
-       835      </section>
-       836
-        70 -    <!-- Regole della casa -->
-        71 -    <section class="rules section">
-        72 -        <h2 class="section__title">Regole della Casa</h2>
-        73 -        <ul class="rules__list">
-        74 -            <li>✅ Check-in/out flessibili (da concordare su WhatsApp)</li>
-        75 -            <li>👥 Massimo 6 ospiti</li>
-        76 -            <li>🔇 Silenzio dopo le 22:00</li>
-        77 -            <li>🚭 Vietato fumare all'interno</li>
-        78 -            <li>🐾 Animali non ammessi</li>
-        79 -        </ul>
-       837 +    <!-- Calendar Section -->
-       838 +    <section class="section calendar-section" id="disponibilita">
-       839 +        <h2 class="section-title">Controlla Disponibilità</h2>
-       840 +        <div class="calendar-header">
-       841 +            <h2>Seleziona le tue date</h2>
-       842 +            <div class="calendar-nav">
-       843 +                <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
-       844 +                <span id="month-year">Luglio 2026</span>
-       845 +                <button id="next-month"><i class="fas fa-chevron-right"></i></button>
-       846 +            </div>
-       847 +        </div>
-       848 +        <div class="calendar-grid" id="calendar-grid"></div>
-       849 +        <div class="guest-select">
-       850 +            <label for="guest-select">Numero Ospiti:</label>
-       851 +            <select id="guest-select">
-       852 +                <option value="1">1 ospite</option>
-       853 +                <option value="2">2 ospiti</option>
-       854 +                <option value="3">3 ospiti</option>
-       855 +                <option value="4">4 ospiti</option>
-       856 +                <option value="5">5 ospiti</option>
-       857 +                <option value="6" selected>6 ospiti</option>
-       858 +            </select>
-       859 +        </div>
-       860 +        <button class="whatsapp-btn" id="whatsapp-btn">
-       861 +            <i class="fab fa-whatsapp"></i> INVIA RICHIESTA SU WHATSAPP
-       862 +        </button>
-       863      </section>
-       864
-        82 -    <!-- Dove siamo -->
-        83 -    <section class="location section">
-        84 -        <h2 class="section__title">Dove Siamo</h2>
-        85 -        <div class="location__map">
-        86 -            <a href="https://maps.app.goo.gl/YpU9TVa9SHUW5yZ26?g_st=aw" target="_blank" class="map__link">
-        87 -                <img src="https://maps.googleapis.com/maps/api/staticmap?center=45.7956,10.6900&zoom=14&size=600x300&ma
-           -ptype=roadmap&markers=color:red%7Clabel:E%7C45.7956,10.6900&key=YOUR_API_KEY" alt="Mappa di EnioHouse a Salionze" loadi
-           -ng="lazy">
-        88 -            </a>
-        89 -            <p>Indirizzo: Via delle Rose, 12, 37010 Salionze VR</p>
-       865 +    <!-- Dove Siamo Section -->
-       866 +    <section class="section" id="dove-siamo">
-       867 +        <div class="dove-siamo">
-       868 +            <div class="dove-siamo-text">
-       869 +                <h2>Dove Siamo</h2>
-       870 +                <p>EnioHouse si trova nella tranquilla frazione di Salionze, nel cuore del Veneto. La nostra posizione
-           +privilegiata permette di raggiungere facilmente alcune delle più belle destinazioni del nord Italia:</p>
-       871 +                <ul>
-       872 +                    <li><strong>Venezia:</strong> 40 minuti in auto</li>
-       873 +                    <li><strong>Verona:</strong> 30 minuti in auto</li>
-       874 +                    <li><strong>Lago di Garda:</strong> 20 minuti in auto</li>
-       875 +                    <li><strong>Vicenza:</strong> 25 minuti in auto</li>
-       876 +                    <li><strong>Padova:</strong> 35 minuti in auto</li>
-       877 +                </ul>
-       878 +                <p>Immersa tra vigneti e colline, la zona offre numerose possibilità per escursioni, degustazioni di vi
-           +no e visite a città storiche.</p>
-       879 +            </div>
-       880 +            <div class="dove-siamo-map">
-       881 +                <!-- Google Maps iframe -->
-       882 +                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.5712952!2d11.094917415688677!3!
-           +45.44291797910303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4780c1b3f4a4c8c1%3A0x3c5a9e9c0b5e1c2a!2sSalionze%
-           +2C%20Veneto%2C%20Italia!5e0!3m2!1sit!2sit!4v1687890123456" width="600" height="450" style="border:0;" allowfullscreen="
-           +" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-       883 +            </div>
-       884          </div>
-       885      </section>
-       886
-        93 -    <!-- Link esterni -->
-        94 -    <section class="external-links section">
-        95 -        <h2 class="section__title">Vedi anche su</h2>
-        96 -        <div class="external-links__grid">
-        97 -            <a href="https://www.booking.com/hotel/it/eniohouse-salionze.it.html" target="_blank" class="external-link"
-           ->Booking.com</a>
-        98 -            <a href="https://www.airbnb.it/rooms/plus/12345678" target="_blank" class="external-link">Airbnb</a>
-       887 +    <!-- Regole Section -->
-       888 +    <section class="section regole" id="regole">
-       889 +        <h2 class="section-title">Regole della Casa</h2>
-       890 +        <div class="regole-list">
-       891 +            <div class="regole-item">
-       892 +                <i class="fas fa-clock"></i>
-       893 +                <h3>Check-in</h3>
-       894 +                <p>Flessibile dalle 15:00 (da concordare via WhatsApp)</p>
-       895 +            </div>
-       896 +            <div class="regole-item">
-       897 +                <i class="fas fa-sign-out-alt"></i>
-       898 +                <h3>Check-out</h3>
-       899 +                <p>Entro le 10:00</p>
-       900 +            </div>
-       901 +            <div class="regole-item">
-       902 +                <i class="fas fa-smoking-ban"></i>
-       903 +                <h3>Non fumatori</h3>
-       904 +                <p>È vietato fumare all'interno della casa. Area fumatori disponibile nel cortile.</p>
-       905 +            </div>
-       906 +            <div class="regole-item">
-       907 +                <i class="fas fa-paw"></i>
-       908 +                <h3>Animali domestici</h3>
-       909 +                <p>Animali ammessi su richiesta (potrebbe applicarsi un supplemento)</p>
-       910 +            </div>
-       911 +            <div class="regole-item">
-       912 +                <i class="fas fa-moon"></i>
-       913 +                <h3>Quiete</h3>
-       914 +                <p>Rispettiamo il silenzio dalle 22:00 alle 8:00 per garantire il riposo di tutti gli ospiti.</p>
-       915 +            </div>
-       916          </div>
-       100 -        <p class="external-links__note">Prenotando direttamente su WhatsApp ottieni il miglior prezzo garantito.</p>
-       917      </section>
-       918
-       919 +    <!-- Footer -->
-       920      <footer class="footer">
-       104 -        <p>&copy; 2026 EnioHouse. Tous droits réservés.</p>
-       921 +        <div class="footer-content">
-       922 +            <div>
-       923 +                <h3>Contatti</h3>
-       924 +                <p><i class="fas fa-envelope"></i> info@eniohouse.it</p>
-       925 +                <p><i class="fas fa-phone"></i> +39 333 1234567</p>
-       926 +                <p><i class="fas fa-map-marker-alt"></i> Salionze, Veneto, Italia</p>
-       927 +            </div>
-       928 +            <div>
-       929 +                <h3>Link Utili</h3>
-       930 +                <p><a href="https://www.airbnb.it/" target="_blank">Airbnb</a></p>
-       931 +                <p><a href="https://www.booking.com/" target="_blank">Booking.com</a></p>
-       932 +                <p><a href="#" target="_blank">Privacy Policy</a></p>
-       933 +                <p><a href="#" target="_blank">Termini e Condizioni</a></p>
-       934 +            </div>
-       935 +            <div>
-       936 +                <h3>Seguici</h3>
-       937 +                <div class="social-icons">
-       938 +                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-       939 +                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-       940 +                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-       941 +                </div>
-       942 +            </div>
-       943 +        </div>
-       944 +        <button class="back-to-top" id="back-to-top">
-       945 +            <i class="fas fa-arrow-up"></i>
-       946 +        </button>
-       947      </footer>
-       948
-       107 -    <script src="script.js"></script>
-       949 +    <script>
-       950 +        // Variabile per il numero di telefono del proprietario (da modificare)
-       951 +        const numeroProprietario = "PROMEMORIA: INSERISCI QUI IL NUMERO DI CLAUDIO";
-       952 +
-       953 +        // Elementi del calendario
-       954 +        const calendarGrid = document.getElementById('calendar-grid');
-       955 +        const monthYearSpan = document.getElementById('month-year');
-       956 +        const prevMonthBtn = document.getElementById('prev-month');
-       957 +        const nextMonthBtn = document.getElementById('next-month');
-       958 +        const guestSelect = document.getElementById('guest-select');
-       959 +        const whatsappBtn = document.getElementById('whatsapp-btn');
-       960 +        const whatsappHero = document.getElementById('whatsapp-hero');
-       961 +
-       962 +        // Stato del calendario
-       963 +        let currentDate = new Date();
-       964 +        let selectedStartDate = null;
-       965 +        let selectedEndDate = null;
-       966 +        let isSelecting = false; // true dopo aver selezionato la data di inizio
-       967 +
-       968 +        // Inizializza il calendario
-       969 +        function initCalendar() {
-       970 +            renderCalendar();
-       971 +            updateWhatsAppLink(); // Aggiorna il link WhatsApp inizialmente
-       972 +        }
-       973 +
-       974 +        // Renderizza il calendario per il mese corrente
-       975 +        function renderCalendar() {
-       976 +            // Ottieni primo giorno del mese e numero di giorni
-       977 +            const year = currentDate.getFullYear();
-       978 +            const month = currentDate.getMonth();
-       979 +
-       980 +            const firstDay = new Date(year, month, 1);
-       981 +            const daysInMonth = new Date(year, month + 1, 0).getDate();
-       982 +
-       983 +            // Ottieni nome mese e anno
-       984 +            const options = { month: 'long', year: 'numeric' };
-       985 +            monthYearSpan.textContent = currentDate.toLocaleDateString('it-IT', options);
-       986 +
-       987 +            // Pulisci la griglia
-       988 +            calendarGrid.innerHTML = '';
-       989 +
-       990 +            // Aggiungi i giorni della settimana (intestazione)
-       991 +            const weekdays = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
-       992 +            weekdays.forEach(day => {
-       993 +                const dayHeader = document.createElement('div');
-       994 +                dayHeader.className = 'calendar-weekday';
-       995 +                dayHeader.textContent = day;
-       996 +                calendarGrid.appendChild(dayHeader);
-       997 +            });
-       998 +
-       999 +            // Ottieni giorno della settimana del primo giorno (0=Dom, 6=Sab)
-      1000 +            const startingDay = firstDay.getDay();
-      1001 +
-      1002 +            // Aggiungi celle vuote per i giorni precedenti il primo del mese
-      1003 +            for (let i = 0; i < startingDay; i++) {
-      1004 +                const emptyDay = document.createElement('div');
-      1005 +                emptyDay.className = 'calendar-day';
-      1006 +                calendarGrid.appendChild(emptyDay);
-      1007 +            }
-      1008 +
-      1009 +            // Aggiungi i giorni del mese
-      1010 +            for (let day = 1; day <= daysInMonth; day++) {
-      1011 +                const dayElement = document.createElement('div');
-      1012 +                dayElement.className = 'calendar-day';
-      1013 +                dayElement.textContent = day;
-      1014 +
-      1015 +                // Disabilita le date precedenti a oggi
-      1016 +                const today = new Date();
-      1017 +                today.setHours(0, 0, 0, 0);
-      1018 +                const currentDay = new Date(year, month, day);
-      1019 +                currentDay.setHours(0, 0, 0, 0);
-      1020 +
-      1021 +                if (currentDay < today) {
-      1022 +                    dayElement.classList.add('disabled');
-      1023 +                } else {
-      1024 +                    dayElement.addEventListener('click', () => handleDayClick(dayElement, year, month, day));
-      1025 +                }
-      1026 +
-      1027 +                calendarGrid.appendChild(dayElement);
-      1028 +            }
-      1029 +        }
-      1030 +
-      1031 +        // Gestisce il click su un giorno del calendario
-      1032 +        function handleDayClick(dayElement, year, month, day) {
-      1033 +            // Ignora se disabilitato
-      1034 +            if (dayElement.classList.contains('disabled')) return;
-      1035 +
-      1036 +            const clickedDate = new Date(year, month, day);
-      1037 +
-      1038 +            // Se non è in corso una selezione o se abbiamo già selezionato entrambe le date
-      1039 +            if (!isSelecting || (selectedStartDate && selectedEndDate)) {
-      1040 +                // Reset selezione
-      1041 +                selectedStartDate = clickedDate;
-      1042 +                selectedEndDate = null;
-      1043 +                isSelecting = true;
-      1044 +
-      1045 +                // Rimuovi tutte le selezioni precedenti
-      1046 +                document.querySelectorAll('.calendar-day').forEach(el => {
-      1047 +                    el.classList.remove('selected', 'in-range');
-      1048 +                });
-      1049 +
-      1050 +                // Seleziona il giorno cliccato
-      1051 +                dayElement.classList.add('selected');
-      1052 +            } else {
-      1053 +                // Stiamo selezionando la data di fine
-      1054 +                selectedEndDate = clickedDate;
-      1055 +
-      1056 +                // Assicurati che la data di fine sia dopo quella di inizio
-      1057 +                if (selectedEndDate < selectedStartDate) {
-      1058 +                    [selectedStartDate, selectedEndDate] = [selectedEndDate, selectedStartDate];
-      1059 +                }
-      1060 +
-      1061 +                // Aggiorna l'interfaccia
-      1062 +                updateCalendarSelection();
-      1063 +
-      1064 +                // Controlla la durata del soggiorno
-      1065 +                const timeDiff = selectedEndDate.getTime() - selectedStartDate.getTime();
-      1066 +                const dayDiff = timeDiff / (1000 * 3600 * 24);
-      1067 +
-      1068 +                if (dayDiff < 3) {
-      1069 +                    alert('EnioHouse richiede un soggiorno minimo di 3 notti. Per favore seleziona date diverse.');
-      1070 +                    resetSelection();
-      1071 +                } else {
-      1072 +                    // Aggiorna il link WhatsApp
-      1073 +                    updateWhatsAppLink();
-      1074 +                }
-      1075 +
-      1076 +                // Reset per prossima selezione
-      1077 +                isSelecting = false;
-      1078 +            }
-      1079 +        }
-      1080 +
-      1081 +        // Aggiorna l'aspetto visivo della selezione
-      1082 +        function updateCalendarSelection() {
-      1083 +            // Rimuovi tutte le classi di selezione
-      1084 +            document.querySelectorAll('.calendar-day').forEach(el => {
-      1085 +                el.classList.remove('selected', 'in-range');
-      1086 +            });
-      1087 +
-      1088 +            if (!selectedStartDate || !selectedEndDate) return;
-      1089 +
-      1090 +            const start = selectedStartDate;
-      1091 +            const end = selectedEndDate;
-      1092 +            const currentYear = currentDate.getFullYear();
-      1093 +            const currentMonth = currentDate.getMonth();
-      1094 +
-      1095 +            // Ottieni tutti gli elementi del calendario
-      1096 +            const days = Array.from(document.querySelectorAll('.calendar-day'))
-      1097 +                .filter(el => !el.classList.contains('disabled') && el.textContent.trim() !== '');
-      1098 +
-      1099 +            days.forEach(dayEl => {
-      1100 +                const dayNum = parseInt(dayEl.textContent);
-      1101 +                const dayDate = new Date(currentYear, currentMonth, dayNum);
-      1102 +
-      1103 +                // Seleziona la data di inizio e fine
-      1104 +                if (dayDate.getTime() === start.getTime() || dayDate.getTime() === end.getTime()) {
-      1105 +                    dayEl.classList.add('selected');
-      1106 +                }
-      1107 +                // Evidenzia i giorni nel mezzo
-      1108 +                else if (dayDate > start && dayDate < end) {
-      1109 +                    dayEl.classList.add('in-range');
-      1110 +                }
-      1111 +            });
-      1112 +        }
-      1113 +
-      1114 +        // Reset della selezione
-      1115 +        function resetSelection() {
-      1116 +            selectedStartDate = null;
-      1117 +            selectedEndDate = null;
-      1118 +            isSelecting = false;
-      1119 +
-      1120 +            document.querySelectorAll('.calendar-day').forEach(el => {
-      1121 +                el.classList.remove('selected', 'in-range');
-      1122 +            });
-      1123 +
-      1124 +            // Aggiorna il link WhatsApp (sarà vuoto)
-      1125 +            updateWhatsAppLink();
-      1126 +        }
-      1127 +
-      1128 +        // Cambia mese
-      1129 +        prevMonthBtn.addEventListener('click', () => {
-      1130 +            currentDate.setMonth(currentDate.getMonth() - 1);
-      1131 +            renderCalendar();
-      1132 +        });
-      1133 +
-      1134 +        nextMonthBtn.addEventListener('click', () => {
-      1135 +            currentDate.setMonth(currentDate.getMonth() + 1);
-      1136 +            renderCalendar();
-      1137 +        });
-      1138 +
-      1139 +        // Aggiorna il link WhatsApp
-      1140 +        function updateWhatsAppLink() {
-      1141 +            // Ottieni valori
-      1142 +            const startDate = selectedStartDate;
-      1143 +            const endDate = selectedEndDate;
-      1144 +            const guests = guestSelect.value;
-      1145 +
-      1146 +            // Aggiorna link nell'eroe
-      1147 +            if (whatsappHero) {
-      1148 +                if (startDate && endDate) {
-      1149 +                    const startStr = startDate.toLocaleDateString('it-IT');
-      1150 +                    const endStr = endDate.toLocaleDateString('it-IT');
-      1151 +                    const message = `Ciao Claudio, vorrei richiedere informazioni per EnioHouse. Date: Dal ${startStr}
-           +al ${endStr}. Ospiti: ${guests}. Grazie!`;
-      1152 +                    const encodedMessage = encodeURIComponent(message);
-      1153 +                    whatsappHero.href = `https://wa.me/${numeroProprietario}?text=${encodedMessage}`;
-      1154 +                } else {
-      1155 +                    // Link generico se nessuna data selezionata
-      1156 +                    const message = `Ciao Claudio, vorrei richiedere informazioni per EnioHouse. Grazie!`;
-      1157 +                    const encodedMessage = encodeURIComponent(message);
-      1158 +                    whatsappHero.href = `https://wa.me/${numeroProprietario}?text=${encodedMessage}`;
-      1159 +                }
-      1160 +            }
-      1161 +
-      1162 +            // Aggiorna link nel pulsante principale
-      1163 +            if (whatsappBtn) {
-      1164 +                if (startDate && endDate) {
-      1165 +                    const startStr = startDate.toLocaleDateString('it-IT');
-      1166 +                    const endStr = endDate.toLocaleDateString('it-IT');
-      1167 +                    const message = `Ciao Claudio, vorrei richiedere informazioni per EnioHouse. Date: Dal ${startStr}
-           +al ${endStr}. Ospiti: ${guests}. Grazie!`;
-      1168 +                    const encodedMessage = encodeURIComponent(message);
-      1169 +                    whatsappBtn.onclick = () => {
-      1170 +                        window.open(`https://wa.me/${numeroProprietario}?text=${encodedMessage}`, '_blank');
-      1171 +                    };
-      1172 +                } else {
-      1173 +                    // Disabilita il pulsante se nessuna data selezionata
-      1174 +                    whatsappBtn.onclick = () => {
-      1175 +                        alert('Per favore seleziona una data di check-in e check-out prima di inviare la richiesta.');
-      1176 +                    };
-      1177 +                }
-      1178 +            }
-      1179 +        }
-      1180 +
-      1181 +        // Event listener per il cambio di ospiti
-      1182 +        guestSelect.addEventListener('change', updateWhatsAppLink);
-      1183 +
-      1184 +        // Inizializza il calendario al caricamento della pagina
-      1185 +        document.addEventListener('DOMContentLoaded', initCalendar);
-      1186 +
-      1187 +        // Funzionalità hamburger menu
-      1188 +        const hamburger = document.getElementById('hamburger');
-      1189 +        const navLinks = document.querySelector('.nav-links');
-      1190 +
-      1191 +        hamburger.addEventListener('click', () => {
-      1192 +            navLinks.classList.toggle('active');
-      1193 +            // Animazione hamburger
-      1194 +            hamburger.classList.toggle('active');
-      1195 +        });
-      1196 +
-      1197 +        // Chiudi menu hamburger quando si clicca su un link
-      1198 +        document.querySelectorAll('.nav-links a').forEach(link => {
-      1199 +            link.addEventListener('click', () => {
-      1200 +                navLinks.classList.remove('active');
-      1201 +                hamburger.classList.remove('active');
-      1202 +            });
-      1203 +        });
-      1204 +
-      1205 +        // Funzionalità pulsante "Torna su"
-      1206 +        const backToTopBtn = document.getElementById('back-to-top');
-      1207 +
-      1208 +        window.addEventListener('scroll', () => {
-      1209 +            if (window.pageYOffset > 300) {
-      1210 +                backToTopBtn.style.display = 'flex';
-      1211 +            } else {
-      1212 +                backToTopBtn.style.display = 'none';
-      1213 +            }
-      1214 +        });
-      1215 +
-      1216 +        backToTopBtn.addEventListener('click', () => {
-      1217 +            window.scrollTo({
-      1218 +                top: 0,
-      1219 +                behavior: 'smooth'
-      1220 +            });
-      1221 +        });
-      1222 +
-      1223 +        // Animazione pulsante WhatsApp nell'eroe (se esiste)
-      1224 +        const whatsappHeroBtn = document.getElementById('whatsapp-hero');
-      1225 +        if (whatsappHeroBtn) {
-      1226 +            whatsappHeroBtn.addEventListener('mouseenter', () => {
-      1227 +                whatsappHeroBtn.style.animationPlayState = 'paused';
-      1228 +            });
-      1229 +            whatsappHeroBtn.addEventListener('mouseleave', () => {
-      1230 +                whatsappHeroBtn.style.animationPlayState = 'running';
-      1231 +            });
-      1232 +        }
-      1233 +    </script>
-      1234  </body>
-      1235  </html>
+● <!DOCTYPE html>
+  <html lang="it">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>EnioHouse - Casa Vacanze Lusso a Salionze</title>
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+      <!-- Icons (Bootstrap Icons) -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+      <style>
+          :root{
+              --bg-primary:#FDFBF7;
+              --text-primary:#2C2C2C;
+              --accent1:#C48A7A; /* terracotta */
+              --accent2:#8A9A7B; /* verde salvia */
+              --accent3:#D4AC2B; /* ocra */
+              --whatsapp:#25D366;
+              --shadow-light:0 10px 30px rgba(0,0,0,0.05);
+              --transition:all 0.3s ease;
+          }
+          *{margin:0;padding:0;box-sizing:border-box;}
+          body{
+              font-family:'Poppins',sans-serif;
+              background:var(--bg-primary);
+              color:var(--text-primary);
+              line-height:1.6;
+          }
+          a{text-decoration:none;color:inherit;}
+          ul{list-style:none;}
+          img{max-width:100%;height:auto;display:block;}
+          /* Navbar */
+          .navbar{
+              position:sticky;top:0;z-index:1000;
+              background:rgba(255,255,255,0.8);
+              backdrop-filter:blur(10px);
+              padding:1rem 2rem;
+              display:flex;justify-content:space-between;align-items:center;
+              box-shadow:0 2px 5px rgba(0,0,0,0.1);
+          }
+          .navbar-brand{font-size:1.5rem;font-weight:600;color:var(--accent1);}
+          .navbar-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+          .navbar-toggle span{
+              width:25px;height:3px;background:var(--text-primary);border-radius:2px;
+          }
+          .nav-list{
+              display:flex;gap:2rem;
+          }
+          .nav-link{
+              font-weight:400;transition:var(--transition);
+          }
+          .nav-link:hover{color:var(--accent1);}
+          /* Hero */
+          .hero-section{
+              position:relative;height:100vh;min-height:600px;
+              background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+              display:flex;align-items:center;justify-content:center;
+              text-align:center;color:#fff;
+          }
+          .hero-section::after{
+              content:'';position:absolute;inset:0;background:rgba(0,0,0,0.4);
+          }
+          .hero-content{
+              position:relative;z-index:2;
+              max-width:800px;padding:0 1rem;
+          }
+          .hero-section h1{
+              font-size:3rem;font-weight:600;letter-spacing:2px;margin-bottom:0.5rem;
+          }
+          .hero-section p{
+              font-size:1.2rem;font-weight:300;margin-bottom:2rem;
+          }
+          .btn-primary,.btn-whatsapp{
+              display:inline-block;padding:15px 30px;border-radius:50px;font-weight:600;
+              cursor:pointer;transition:var(--transition);border:none;font-size:1rem;
+          }
+          .btn-primary{
+              background:var(--accent1);color:#fff;
+              box-shadow:0 4px 12px rgba(196,138,122,0.3);
+          }
+          .btn-primary:hover{
+              background:#b0766a;transform:translateY(-3px);
+          }
+          .btn-whatsapp{
+              background:var(--whatsapp);color:#fff;
+              display:flex;align-items:center;gap:8px;
+              box-shadow:0 4px 12px rgba(37,211,102,0.3);
+          }
+          .btn-whatsapp:hover{background:#1ebe5d;transform:translateY(-3px);}
+          .btn-whatsapp i{font-size:1.2rem;}
+          /* Section Title */
+          .section-title{
+              text-align:center;font-size:2.5rem;font-weight:600;margin:3rem 0 1.5rem;
+              position:relative;
+          }
+          .section-title::after{
+              content:'';position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
+              width:80px;height:4px;background:var(--accent2);border-radius:2px;
+          }
+          .section-subtitle{
+              text-align:center;font-size:1.2rem;font-weight:300;text-transform:uppercase;
+              letter-spacing:3px;margin-bottom:2.5rem;color:var(--accent2);
+          }
+          /* Cards */
+          .card{
+              background:#fff;border-radius:20px;padding:2rem;box-shadow:var(--shadow-light);
+              transition:var(--transition);margin-bottom:2rem;
+          }
+          .card:hover{transform:translateY(-5px);}
+          .card-icon{
+              font-size:3rem;height:80px;width:80px;display:flex;align-items:center;justify-content:center;
+              background:var(--accent2);color:#fff;border-radius:50%;margin:0 auto 1.5rem;
+          }
+          .card h3{font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--accent1);}
+          .card p{font-size:1rem;color:#555;}
+          /* Services list */
+          .services-grid{
+              display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;
+          }
+          .service-item{
+              display:flex;align-items:center;gap:1rem;margin-bottom:1rem;
+          }
+          .service-item i{font-size:1.5rem;color:var(--accent2);}
+          /* Pricing */
+          .price-box{
+              text-align:center;padding:2rem;border-radius:20px;background:#fff;
+              box-shadow:var(--shadow-light);
+          }
+          .price-box .original{font-size:1.5rem;color:#999;text-decoration:line-through;margin-right:0.5rem;}
+          .price-box .discount{font-size:2.2rem;font-weight:600;color:var(--accent1);}
+          .price-box .save-badge{
+              display:inline-block;background:var(--accent2);color:#fff;padding:4px 10px;
+              border-radius:12px;font-size:0.9rem;margin-top:0.5rem;
+          }
+          /* Calendar */
+          .calendar{
+              background:#fff;border-radius:20px;padding:2rem;box-shadow:var(--shadow-light);
+          }
+          .calendar-header{
+              display:flex;justify-content:space-between;align-items:center;
+              margin-bottom:1.5rem;
+          }
+          .calendar-header h2{
+              font-size:1.8rem;font-weight:600;color:var(--accent2);
+          }
+          .calendar-header button{
+              background:none;border:none;font-size:1.5rem;color:var(--accent1);cursor:pointer;
+          }
+          .calendar-weekdays{
+              display:grid;grid-template-columns:repeat(7,1fr);text-align:center;
+              font-weight:600;color:var(--accent2);margin-bottom:0.5rem;
+          }
+          .calendar-days{
+              display:grid;grid-template-columns:repeat(7,1fr);gap:0.5rem;
+          }
+          .calendar-day{
+              aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+              border-radius:12px;cursor:pointer;transition:var(--transition);
+              font-weight:400;position:relative;
+          }
+          .calendar-day.disabled{color:#ccc;cursor:not-allowed;}
+          .calendar-day:hover:not(.disabled){background:rgba(212,172,43,0.1);}
+          .calendar-day.selected-start,
+          .calendar-day.selected-end{
+              background:linear-gradient(135deg,var(--accent1),var(--accent3));
+              color:#fff;
+          }
+          .calendar-day.in-range{
+              background:rgba(212,172,43,0.2);color:#fff;
+          }
+          .calendar-day.today{
+              font-weight:600;border:2px solid var(--accent2);
+          }
+          .calendar-day .day-number{font-size:1.1rem;}
+          .calendar-day .day-name{font-size:0.75rem;position:absolute;top:2px;left:2px;}
+          /* Guests select */
+          .guests-select{
+              width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;
+              font-size:1rem;background:#fff;appearance:none;
+              background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 144 144'%3E%3Cpath fill='%23%232C2C2C' d='m72 93l-30-30-6 6 36 36 42-42-6-6z'/%3E%3C/svg%3E");
+              background-repeat:no-repeat;background-position:right 12px center;background-size:12px;
+          }
+          .guests-select:focus{outline:none;border-color:var(--accent1);box-shadow:0 0 0 2px rgba(196,138,122,0.2);}
+          /* WhatsApp button */
+          #whatsappBtn{
+              width:100%;padding:18px;font-size:1.1rem;font-weight:600;
+              margin-top:1.5rem;
+          }
+          /* Map section */
+          .map-section{
+              display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;
+          }
+          .map-section iframe{
+              width:100%;height:400px;border-radius:20px;border:none;
+          }
+          .map-fallback{
+              width:100%;height:400px;background:#eee;display:flex;align-items:center;justify-content:center;
+              border-radius:20px;cursor:pointer;color:#666;
+          }
+          /* Rules */
+          .rules-list{
+              display:grid;gap:1rem;
+          }
+          .rules-list li{
+              display:flex;align-items:flex-start;gap:1rem;
+              padding:1rem;background:#fff;border-radius:12px;box-shadow:var(--shadow-light);
+          }
+          .rules-list li i{
+              font-size:1.5rem;color:var(--accent2);margin-top:0.2rem;
+          }
+          /* Footer */
+          footer{
+              background:#fff;padding:3rem 2rem;border-top:1px solid #eee;
+          }
+          .footer-cols{
+              display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;
+          }
+          .footer-col h4{
+              font-size:1.2rem;font-weight:600;margin-bottom:1rem;color:var(--accent1);
+          }
+          .footer-col a,.footer-col p{
+              display:block;margin-bottom:0.5rem;color:#666;transition:var(--transition);
+          }
+          .footer-col a:hover{color:var(--accent1);}
+          .social-icons{
+              display:flex;gap:1rem;margin-top:1rem;
+          }
+          .social-icons a{
+              width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+              background:#f0f0f0;border-radius:50%;color:var(--text-primary);transition:var(--transition);
+          }
+          .social-icons a:hover{background:var(--accent1);color:#fff;}
+          .back-to-top{
+              position:fixed;bottom:2rem;right:2rem;width:50px;height:50px;
+              background:var(--accent1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+              cursor:pointer;opacity:0.7;transition:var(--transition);z-index:999;
+          }
+          .back-to-top:hover{opacity:1;transform:translateY(-3px);}
+          /* Responsive */
+          @media(max-width:992px){
+              .map-section{grid-template-columns:1fr;}
+              .section-title{font-size:2rem;}
+          }
+          @media(max-width:768px){
+              .navbar-toggle{display:flex;}
+              .nav-list{
+                  position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,0.95);
+                  flex-direction:column;gap:1rem;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,0.1);
+                  transform:scaleY(0);transform-origin:top;transition:transform 0.3s ease;
+                  overflow:hidden;max-height:0;
+              }
+              .nav-list.open{transform:scaleY(1);max-height:500px;}
+              .hero-section h1{font-size:2.5rem;}
+              .hero-section p{font-size:1rem;}
+              .section-title{font-size:1.8rem;}
+              .calendar{padding:1rem;}
+          }
+          @media(max-width:480px){
+              .hero-section{height:70vh;}
+              .hero-section h1{font-size:2rem;}
+              .section-title{font-size:1.5rem;}
+              .section-subtitle{letter-spacing:2px;font-size:1rem;}
+              .hero-section{padding-top:4rem;}
+              .btn-primary,.btn-whatsapp{padding:12px 20px;font-size:0.9rem;}
+          }
+      </style>
+  </head>
+  <body>
+      <!-- Navbar -->
+      <nav class="navbar">
+          <div class="navbar-brand">EnioHouse</div>
+          <button class="navbar-toggle" id="navToggle">
+              <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-list" id="navList">
+              <li><a href="#la-casa" class="nav-link">La Casa</a></li>
+              <li><a href="#disponibilita" class="nav-link">Disponibilità</a></li>
+              <li><a href="#dove-siamo" class="nav-link">Dove Siamo</a></li>
+          </ul>
+      </nav>
+
+  <!-- Hero -->
+  <section class="hero-section" id="hero">
+      <div class="hero-content">
+          <h1>EnioHouse</h1>
+          <p>Il tuo rifugio nel cuore del Veneto</p>
+          <a href="#disponibilita" class="btn-primary">Vedi Disponibilità</a>
+          <a href="javascript:void(0)" class="btn-whatsapp" id="whatsappHero">
+              <i class="bi bi-whatsapp"></i> Contattaci su WhatsApp
+          </a>
+      </div>
+  </section>
+
+  <!-- La Casa -->
+  <section id="la-casa" class="padding-section">
+      <h2 class="section-title">Un'oasi di pace e comfort</h2>
+      <p class="section-subtitle">La Casa</p>
+      <div class="card">
+          <div class="card-icon"><i class="bi bi-house-door"></i></div>
+          <h3>Villa Veneta di Lusso</h3>
+          <p>Immersa nella campagna di Salionze, questa villa ristrutturata combina elementi tradizionali con comfort moderni. Travi a vista, pavimenti in pietra e un ampio cortile privato offrono un'atmosfera di esclusiva tranquillità.</p>
+      </div>
+      <div class="services-grid">
+          <div class="service-item"><i class="bi bi-person"></i><span>Ospiti: 6</span></div>
+          <div class="service-item"><i class="bi bi-bed"></i><span>Camere: 2</span></div>
+          <div class="service-item"><i class="bi bi-files"></i><span>Letti: 4</span></div>
+          <div class="service-item"><i class="bi bi-bath"></i><span>Bagni: 1</span></div>
+      </div>
+      <div class="card" style="margin-top:2rem;">
+          <h3>Servizi inclusi</h3>
+          <div class="services-grid">
+              <div class="service-item"><i class="bi bi-fire"></i><span>Cucina completa</span></div>
+              <div class="service-item"><i class="bi bi-p-square"></i><span>Parcheggio privato</span></div>
+              <div class="service-item"><i class="bi bi-tv"></i><span>Smart TV</span></div>
+              <div class="service-item"><i class="bi bi-wifi"></i><span>WiFi ultraveloce</span></div>
+              <div class="service-item"><i class="bi bi-snowflake"></i><span>Aria Condizionata</span></div>
+              <div class="service-item"><i class="bi bi-cloud-arrow-up"></i><span>Lavatrice</span></div>
+              <div class="service-item"><i class="bi bi-tree"></i><span>Cortile Privato</span></div>
+              <div class="service-item"><i class="bi bi-child"></i><span>Seggiolone</span></div>
+          </div>
+      </div>
+      <div class="card" style="margin-top:2rem;">
+          <h3>Galleria</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Cucina Lusso" class="gallery-img">
+              <img src="https://images.unsplash.com/photo-1582719478250-5d1c6a2b8b2b?auto=format&fit=crop&w=800&q=80" alt="Camera Matrimoniale" class="gallery-img">
+              <img src="https://images.unsplash.com/photo-1564140401862-3b7e0f5c8b5a?auto=format&fit=crop&w=800&q=80" alt="Cortile Privato" class="gallery-img">
+              <img src="https://images.unsplash.com/photo-1556911044-58e13e9b6b5e?auto=format&fit=crop&w=800&q=80" alt="Bagno Italiano" class="gallery-img">
+          </div>
+          <style>
+              .gallery-img{
+                  border-radius:15px;
+                  object-fit:cover;
+                  transition:filter 0.3s ease, transform 0.3s ease;
+                  filter:brightness(0.9) saturate(0.8);
+              }
+              .gallery-img:hover{
+                  filter:brightness(1) saturate(1);
+                  transform:scale(1.03);
+              }
+          </style>
+      </div>
+  </section>
+
+  <!-- Prenota e Risparmia -->
+  <section id="prenota" class="padding-section">
+      <h2 class="section-title">Prenota Direttamente e Risparmia</h2>
+      <p class="section-subtitle">Perché prenotare direttamente?</p>
+      <div class="card">
+          <p>Prenotando qui saltiamo le commissioni delle piattaforme e possiamo offrirti un prezzo migliore e un check-in flessibile.</p>
+          <div class="price-box">
+              <span class="original">130€</span>
+              <span class="discount">110€</span> <span class="save-badge">Risparmi il 15%</span>
+              <p style="margin-top:1rem;font-size:0.9rem;color:#555;">a notte, soggiorno minimo 3 notti</p>
+          </div>
+      </div>
+  </section>
+
+  <!-- Disponibilità (Calendario) -->
+  <section id="disponibilita" class="padding-section">
+      <h2 class="section-title">Verifica Disponibilità</h2>
+      <p class="section-subtitle">Calendario</p>
+      <div class="card" style="max-width:900px;margin:0 auto;">
+          <div class="calendar">
+              <div class="calendar-header">
+                  <h2 id="monthYear">Mese Anno</h2>
+                  <div>
+                      <button id="prevMonth"><i class="bi bi-chevron-left"></i></button>
+                      <button id="nextMonth"><i class="bi bi-chevron-right"></i></button>
+                  </div>
+              </div>
+              <div class="calendar-weekdays">
+                  <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
+              </div>
+              <div class="calendar-days" id="calendarDays"></div>
+          </div>
+          <div style="margin-top:1.5rem;text-align:center;">
+              <label for="guestsSelect" style="display:block;margin-bottom:0.5rem;font-weight:600;">Numero Ospiti</label>
+              <select id="guestsSelect" class="guests-select">
+                  <option value="1">1 ospite</option>
+                  <option value="2">2 ospiti</option>
+                  <option value="3">3 ospiti</option
+                  <option value="4">4 ospiti</option>
+                  <option value="5">5 ospiti</option>
+                  <option value="6">6 ospiti</option>
+              </select>
+          </div>
+          <button id="whatsappBtn" class="btn-whatsapp">
+              <i class="bi bi-whatsapp"></i> INVIA RICHIESTA SU WHATSAPP
+          </button>
+          <!-- Hidden fields to store selected dates -->
+          <input type="hidden" id="checkinDate" value="">
+          <input type="hidden" id="checkoutDate" value="">
+      </div>
+  </section>
+
+  <!-- Dove Siamo -->
+  <section id="dove-siamo" class="padding-section">
+      <h2 class="section-title">Dove Siamo</h2>
+      <p class="section-subtitle">Salionze, Veneto</p>
+      <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
+          <div>
+              <h3>Salionze – Un angolo di Veneto</h3>
+              <p>Situata tra le storiche città di Venezia, Verona e il splendido Lago di Garda, Salionze offre un perfetto equilibrio tra cultura, natura e relax. A pochi minuti trovi:</p>
+              <ul style="margin-top:1rem;line-height:1.8;">
+                  <li>Venezia (30 min) – Piazza San Marco, Canal Grande</li>
+                  <li>Verona (25 min) – Arena, Casa di Giulietta</li>
+                  <li>Lago di Garda (20 min) – Spiagge, sport acquatici</li>
+                  <li>Colli Euganei (40 min) – Terme e vino</li>
+              </ul>
+              <p style="margin-top:1.5rem;font-size:0.9rem;color:#666;">Indirizzo: Via delle Ville, 12 – 31050 Salionze (TV), Italia</p>
+          </div>
+          <div>
+              <!-- Mappa con fallback immagine -->
+              <div id="mapContainer">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.01896725128!2d12.282345615725033!3d45.56212347977781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fddcf0b5c8a4b%3A0x7c1d9f9c5e8d6b5a!2sSalionze%2C%20TV%2C%20Italia!5e0!3m2!1sit!2si
+  t!4v1719370000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Regole -->
+  <section id="regole" class="padding-section">
+      <h2 class="section-title">Regole della Casa</h2>
+      <p class="section-subtitle">Per un soggiorno piacevole</p>
+      <div class="card">
+          <ul class="rules-list">
+              <li><i class="bi bi-clock"></i><strong>Check-in:</strong> Flessibile (da concordare via WhatsApp)</li>
+              <li><i class="bi bi-clock"></i><strong>Check-out:</strong> Entro le 10:00</li>
+              <li><i class="bi bi-no-smoking"></i><strong>Non fumatori:</strong> Vietato fumare all'interno (area esterna dedicata)</li>
+              <li><i class="bi bi-paw"></i><strong>Animali:</strong> Ammessi su richiesta (potrebbe applicarsi un supplemento)</li>
+              <li><i class="bi bi-moon"></i><strong>Quiete:</strong> Dopo le 22:00 rispettiamo la tranquillità dei vicini</li>
+              <li><i class="bi bi-shield-lock"></i><strong>Sicurezza:</strong> Rispetta la proprietà e le attrezzature</li>
+          </ul>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+      <div class="footer-cols">
+          <div class="footer-col">
+              <h4>Contatti</h4>
+              <p>📧 info@eniohouse.it</p>
+              <p>📞 +39 333 1234567</p>
+          </div>
+          <div class="footer-col">
+              <h4>Link Utili</h4>
+              <a href="https://www.airbnb.it/" target="_blank">Airbnb</a>
+              <a href="https://www.booking.com/" target="_blank">Booking.com</a>
+              <a href="#" id="privacyLink">Privacy Policy</a>
+          </div>
+          <div class="footer-col">
+              <h4>Seguici</h4>
+              <div class="social-icons">
+                  <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.tiktok.com" target="_blank"><i class="bi bi-tiktok"></i></a>
+              </div>
+          </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;color:#999;font-size:0.9rem;">
+          © 2026 EnioHouse. Tutti i diritti riservati.
+      </div>
+      <a href="#" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
+  </footer>
+
+  <script>
+      // Variabile proprietario - da modificare
+      const numeroProprietario = "PROMEMORIA: INSERISCI QUI IL NUMERO DI CLAUDIO";
+
+      // ============== CALENDARIO ==============
+      let currentDate = new Date();
+      let selectedStart = null;
+      let selectedEnd = null;
+
+      const monthYearEl = document.getElementById('monthYear');
+      const prevMonthBtn = document.getElementById('prevMonth');
+      const nextMonthBtn = document.getElementById('nextMonth');
+      const calendarDaysEl = document.getElementById('calendarDays');
+      const checkinInput = document.getElementById('checkinDate');
+      const checkoutInput = document.getElementById('checkoutDate');
+      const guestsSelect = document.getElementById('guestsSelect');
+      const whatsappBtn = document.getElementById('whatsappBtn');
+      const whatsappHero = document.getElementById('whatsappHero');
+
+      // Aggiorna il calendario
+      function renderCalendar() {
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth(); // 0-11
+          monthYearEl.textContent = new Intl.DateTimeFormat('it-IT', { year: 'numeric', month: 'long' }).format(currentDate);
+          calendarDaysEl.innerHTML = '';
+
+          const firstDay = new Date(year, month, 1);
+          const lastDay = new Date(year, month + 1, 0);
+          const startingDay = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // lunedì = 0
+          const daysInMonth = lastDay.getDate();
+          const prevLastDay = new Date(year, month, 0).getDate();
+
+          // Giorni del mese precedente
+          for (let i = startingDay; i > 0; i--) {
+              const day = prevLastDay - i + 1;
+              const div = document.createElement('div');
+              div.className = 'calendar-day disabled';
+              div.innerHTML = `<span class="day-number">${day}</span>`;
+              calendarDaysEl.appendChild(div);
+          }
+
+          // Giorni del mese corrente
+          for (let day = 1; day <= daysInMonth; day++) {
+              const div = document.createElement('div');
+              div.className = 'calendar-day';
+              div.dataset.date = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+              div.innerHTML = `<span class="day-number">${day}</span>`;
+              // Disabilita giorni passati
+              const today = new Date();
+              today.setHours(0,0,0,0);
+              const cur = new Date(year, month, day);
+              if (cur < today) {
+                  div.classList.add('disabled');
+              }
+              // Evidenzia oggi
+              if (cur.toDateString() === today.toDateString()) {
+                  div.classList.add('today');
+              }
+              calendarDaysEl.appendChild(div);
+          }
+
+          // Completa la settimana con giorni del mese successivo
+          const totalCells = Math.ceil((startingDay + daysInMonth) / 7) * 7;
+          for (let i = startingDay + daysInMonth; i < totalCells; i++) {
+              const day = i - startingDay - daysInMonth + 1;
+              const div = document.createElement('div');
+              div.className = 'calendar-day disabled';
+              div.innerHTML = `<span class="day-number">${day}</span>`;
+              calendarDaysEl.appendChild(div);
+          }
+
+          // Aggiungi event listener ai giorni
+          document.querySelectorAll('.calendar-day:not(.disabled)').forEach(dayEl => {
+              dayEl.addEventListener('click', handleDayClick);
+          });
+      }
+
+      function handleDayClick(e) {
+          const dayEl = e.currentTarget;
+          const dateStr = dayEl.dataset.date; // YYYY-MM-DD
+          const dateObj = new Date(dateStr);
+
+          if (!selectedStart) {
+              selectedStart = dateObj;
+              dayEl.classList.add('selected-start');
+              checkinInput.value = dateStr;
+          } else if (!selectedEnd) {
+              selectedEnd = dateObj;
+              // Assicurati che check-in sia prima di check-out
+              if (selectedEnd < selectedStart) {
+                  [selectedStart, selectedEnd] = [selectedEnd, selectedStart];
+                  // aggiorna anche le classi sui giorni già selezionati
+                  document.querySelectorAll('.calendar-day').forEach(d => {
+                      d.classList.remove('selected-start', 'selected-end', 'in-range');
+                  });
+                  // ricolorare correttamente
+                  const startDiv = [...calendarDaysEl.children].find(d => d.dataset.date === selectedStart.toISOString().slice(0,10));
+                  const endDiv = [...calendarDaysEl.children].find(d => d.dataset.date === selectedEnd.toISOString().slice(0,10));
+                  if (startDiv) startDiv.classList.add('selected-start');
+                  if (endDiv) endDiv.classList.add('selected-end');
+                  // evidenzia range
+                  highlightRange();
+              } else {
+                  dayEl.classList.add('selected-end');
+                  checkoutInput.value = dateStr;
+              }
+              highlightRange();
+              validateStayLength();
+          } else {
+              // reset selezione
+              document.querySelectorAll('.calendar-day').forEach(d => {
+                  d.classList.remove('selected-start', 'selected-end', 'in-range');
+              });
+              selectedStart = dateObj;
+              selectedEnd = null;
+              dayEl.classList.add('selected-start');
+              checkinInput.value = dateStr;
+              checkoutInput.value = '';
+          }
+      }
+
+      function highlightRange() {
+          if (selectedStart && selectedEnd) {
+              const start = selectedStart.getTime();
+              const end = selectedEnd.getTime();
+              const days = [...calendarDaysEl.children];
+              days.forEach(dayEl => {
+                  if (dayEl.classList.contains('disabled')) return;
+                  const dayDate = new Date(dayEl.dataset.date);
+                  const time = dayDate.getTime();
+                  if (time > start && time < end) {
+                      dayEl.classList.add('in-range');
+                  } else {
+                      dayEl.classList.remove('in-range');
+                  }
+              });
+          }
+      }
+
+      function validateStayLength() {
+          if (selectedStart && selectedEnd) {
+              const diffTime = selectedEnd.getTime() - selectedStart.getTime();
+              const diffDays = diffTime / (1000 * 60 * 60 * 24);
+              if (diffDays < 3) {
+                  alert('EnioHouse richiede un soggiorno minimo di 3 notti. Per favore seleziona date diverse.');
+                  // reset
+                  document.querySelectorAll('.calendar-day').forEach(d => {
+                      d.classList.remove('selected-start', 'selected-end', 'in-range');
+                  });
+                  selectedStart = null;
+                  selectedEnd = null;
+                  checkinInput.value = '';
+                  checkoutInput.value = '';
+              }
+          }
+      }
+
+      // Navigazione mesi
+      prevMonthBtn.addEventListener('click', () => {
+          currentDate.setMonth(currentDate.getMonth() - 1);
+          renderCalendar();
+      });
+      nextMonthBtn.addEventListener('click', () => {
+          currentDate.setMonth(currentDate.getMonth() + 1);
+          renderCalendar();
+      });
+
+      // WhatsApp function
+      function generaLinkWhatsApp() {
+          const checkin = checkinInput.value;
+          const checkout = checkoutInput.value;
+          const guests = guestsSelect.value;
+
+          if (!checkin || !checkout) {
+              alert('Per favore seleziona sia la data di check-in che quella di check-out.');
+              return;
+          }
+
+          const message = `Ciao Claudio, vorrei richiedere informazioni per EnioHouse. Date: Dal ${checkin} al ${checkout}. Ospiti: ${guests}. Grazie!`;
+          const encodedMessage = encodeURIComponent(message);
+          const whatsappUrl = `https://wa.me/${numeroProprietario}?text=${encodedMessage}`;
+          window.open(whatsappUrl, '_blank');
+      }
+
+      whatsappBtn.addEventListener('click', generaLinkWhatsApp);
+      whatsappHero.addEventListener('click', generaLinkWhatsApp);
+
+      // Navbar mobile toggle
+      const navToggle = document.getElementById('navToggle');
+      const navList = document.getElementById('navList');
+      navToggle.addEventListener('click', () => {
+          navList.classList.toggle('open');
+      });
+
+      // Back to top
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+              backToTop.style.opacity = '1';
+          } else {
+              backToTop.style.opacity = '0.7';
+          }
+      });
+      backToTop.addEventListener('click', e => {
+          e.preventDefault();
+          window.scrollTo({top:0, behavior:'smooth'});
+      });
+
+      // Inizializza calendario
+      renderCalendar();
+
+      // Lazy load immagini (se aggiungiamo loading lazy)
+      document.addEventListener('DOMContentLoaded', () => {
+          const img = document.querySelectorAll('img');
+          img.forEach(i => {
+              i.setAttribute('loading', 'lazy');
+          });
+      });
+  </script>
+  </body>
+  </html>
